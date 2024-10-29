@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Pimcore\Bundle\QuillBundle;
 
-use Pimcore\Bundle\EnterpriseSubscriptionToolsBundle\Bundle\EnterpriseBundleInterface;
-use Pimcore\Bundle\EnterpriseSubscriptionToolsBundle\PimcoreEnterpriseSubscriptionToolsBundle;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
 use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
@@ -41,7 +39,7 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
     public function getCssPaths(): array
     {
         return [
-            '/bundles/pimcorequill//quill/quill.snow.css'
+            '/bundles/pimcorequill//quill/quill.snow.css',
         ];
     }
 

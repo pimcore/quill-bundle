@@ -1,8 +1,22 @@
-# x Template x
-todo
+# Quill WYSIWYG Pimcore Bundle
+This bundle provides the [Quill 2.x](https://quilljs.com/) WYSIWYG editor integration for Pimcore. 
+This includes the WYSIWYG for Documents, Data Objects and Shared Translations. 
 
-## Features in a Nutshell
+## Installation
 
+Make sure the bundle is enabled in the `config/bundles.php` file. The following lines should be added:
 
-## Documentation Overview
-- [Installation](./doc/01_Installation.md)
+```php
+use Pimcore\Bundle\QuillBundle\PimcoreQuillBundle;
+// ...
+
+return [
+    // ...
+    PimcoreQuillBundle::class => ['all' => true],
+    // ...
+];
+```
+
+```bash
+bin/console pimcore:bundle:install PimcoreQuillBundle
+```

@@ -4,6 +4,10 @@ This includes the WYSIWYG for Documents, Data Objects and Shared Translations.
 
 ## Installation
 
+```bash
+composer install pimcore/quill-bundle
+```
+
 Make sure the bundle is enabled in the `config/bundles.php` file. The following lines should be added:
 
 ```php
@@ -15,8 +19,4 @@ return [
     PimcoreQuillBundle::class => ['all' => true],
     // ...
 ];
-```
-
-```bash
-bin/console pimcore:bundle:install PimcoreQuillBundle
 ```

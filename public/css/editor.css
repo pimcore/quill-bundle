@@ -1,0 +1,83 @@
+:is(.ql-color-picker .ql-picker-label, .ql-icon-picker .ql-picker-label) svg {
+    float: left;
+}
+
+.ql-toolbar .ql-formats :is(button.ql-undo,button.ql-redo,  button.ql-html-edit) {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 18px;
+}
+
+.ql-toolbar .ql-formats button.ql-undo {
+    background-image: url(icons/arrow-counterclockwise.svg);
+}
+
+.ql-toolbar .ql-formats button.ql-redo {
+    background-image: url(icons/arrow-clockwise.svg);
+}
+
+.ql-toolbar .ql-formats button.ql-html-edit {
+    display: contents;
+}
+
+.ql-operate-block + .ql-table-properties-form {
+    z-index: 9999;
+}
+
+
+
+.modal__bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10,10,10,0.33);
+    z-index: 9999;
+    display: none;
+}
+
+.modal__inner {
+    margin: 80px auto;
+    padding: 15px;
+    width: 700px;
+
+    background-color: #fefefe;
+    border-radius: 13px;
+}
+
+.modal__inner textarea {
+    display: block;
+    height: 400px;
+    width: 100%;
+}
+
+.modal__close-btn {
+    float: right;
+}
+
+.modal__container-actions {
+    margin-top: 18px;
+    text-align: end;
+}
+
+.modal__container-actions > :where(button, button:focus) {
+    margin-left: 10px;
+    padding-top: 5px;
+    width: 100px;
+    border: 1px solid #0a0a0a;
+    border-radius: 8px;
+    background-color: unset;
+}
+
+.modal__container-actions > :is(.actions__cancel-btn, .actions__save-btn) {
+    outline: none;
+}
+
+.actions__cancel-btn {
+    background-color: #ec7959;
+}
+
+.actions__save-btn {
+    background-color: #00e765;
+}

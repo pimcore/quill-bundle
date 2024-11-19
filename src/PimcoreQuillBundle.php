@@ -32,6 +32,8 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
     {
         return [
             '/bundles/pimcorequill/quill/quill.js',
+            '/bundles/pimcorequill/quill-table-better/quill-table-better.js',
+            '/bundles/pimcorequill/quill-html-edit-button/quill.htmlEditButton.min.js',
             '/bundles/pimcorequill/js/editor.js',
         ];
     }
@@ -39,7 +41,9 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
     public function getCssPaths(): array
     {
         return [
-            '/bundles/pimcorequill//quill/quill.snow.css',
+            '/bundles/pimcorequill/css/editor.css',
+            '/bundles/pimcorequill/quill/quill.snow.css',
+            '/bundles/pimcorequill/quill-table-better/quill-table-better.css',
         ];
     }
 

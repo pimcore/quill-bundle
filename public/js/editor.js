@@ -138,6 +138,8 @@ pimcore.bundle.quill.editor = Class.create({
         this.initializeToolbar();
 
         this.activeEditor.on('text-change', () => {
+            const tableModule = this.activeEditor.getModule('table-better');
+            tableModule.deleteTableTemporary();
             document.dispatchEvent(new CustomEvent(pimcore.events.changeWysiwyg, {
                 detail: {
                     e: {target:{id: textareaId}},
@@ -145,12 +147,27 @@ pimcore.bundle.quill.editor = Class.create({
                     context: e.detail.context
                 }
             }));
+            checkCharCount();
         });
 
         this.activeEditor.container.onfocus = () => {
             this.activeEditor = this.quills.get(textareaId);
             this.showOnlyActiveToolbar();
         };
+
+        const maxChars = this.maxChars;
+        const checkCharCount = () => {
+            this.activeEditor.root.style.border = '';
+            this.activeEditor.root.setAttribute('title', '');
+
+            const charCount = this.activeEditor.getLength();
+
+            if (maxChars !== -1 && charCount > maxChars) {
+                this.activeEditor.root.style.border = '1px solid red';
+                this.activeEditor.root.setAttribute('title', t('maximum_length_is') + ' ' + maxChars);
+            }
+        };
+        checkCharCount();
     },
 
     onDropWysiwyg: function (e) {
@@ -390,12 +407,17 @@ pimcore.bundle.quill.editor = Class.create({
     openHtmlEdit: function() {
         this.modalBackground.style.display = "block";
         const textarea = this.modalBackground.getElementsByTagName('textarea')[0];
+        const tableModule = this.activeEditor.getModule('table-better');
+        tableModule.deleteTableTemporary();
         textarea.innerHTML = this.activeEditor.getSemanticHTML();
     },
 
     setEditorContent: function (html) {
         this.activeEditor.deleteText(0, this.activeEditor.getLength());
-        const delta = this.activeEditor.clipboard.convert({ html });
+        const delta = this.activeEditor.clipboard.convert({
+            html,
+            text: '\n'
+        });
         this.activeEditor.updateContents(delta, Quill.sources.USER);
     }
 })

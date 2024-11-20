@@ -2,6 +2,10 @@
     float: left;
 }
 
+.ql-editor .ql-table-better {
+    width: unset;
+}
+
 .ql-toolbar .ql-formats :is(button.ql-undo,button.ql-redo,  button.ql-html-edit) {
     background-repeat: no-repeat;
     background-position: center;

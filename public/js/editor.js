@@ -73,6 +73,7 @@ pimcore.bundle.quill.editor = Class.create({
 
     createWysiwyg: function (e) {
         const textareaId = e.detail.textarea.id ?? e.detail.textarea;
+        document.getElementById(textareaId).removeAttribute('contenteditable');
 
         let subSpace = '';
         if (e.detail.context === 'document') {
@@ -150,7 +151,7 @@ pimcore.bundle.quill.editor = Class.create({
             checkCharCount();
         });
 
-        this.activeEditor.container.onfocus = () => {
+        this.activeEditor.container.firstChild.onfocus = () => {
             this.activeEditor = this.quills.get(textareaId);
             this.showOnlyActiveToolbar();
         };

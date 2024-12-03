@@ -1,6 +1,6 @@
 {
   "name": "pimcore/quill-bundle",
-  "license": "Pimcore Enterprise License (PEL)",
+  "license": "GPL-3.0+",
   "type": "pimcore-bundle",
   "config": {
     "discard-changes": true,

@@ -1,6 +1,6 @@
 # Migration to Quill 
 
-Every WYSIWYG-Editor (TinyMCE, CKEditor, ...) has its own peculiarities.
+Every WYSIWYG-Editor (TinyMCE, CKEditor, ...) has its own peculiarities, that means that they are never 100% compatible to each other. Potential incompatibilities can result into different markup or styling, in rare edge-cases even in a kind of data-loss if the existing markup is not supported by Quill. Therefore it's important to check your existing contents for compatibility with the editor. 
 
 ## Configuration
 

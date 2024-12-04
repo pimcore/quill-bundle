@@ -5,6 +5,9 @@ This includes the WYSIWYG for Documents, Data Objects and Shared Translations.
 ## Installation
 See [Installation](./doc/00_Installation.md)
 
+## Migration to Quill
+See [Migration](./doc/01_Migration_to_Quill.md)
+
 ## Configuration
 
 Available configuration options can be found here: [config options](https://quilljs.com/docs/configuration/)
@@ -18,7 +21,7 @@ Available themes and how to configure it can be found here: [themes](https://qui
 ### Basic usage
 
 `wysiwyg` helper doesn't require any additional configuration options.
-The following code add a second toolbar.
+The following code customize the toolbar.
 
 ```twig
 <section id="marked-content">
@@ -28,14 +31,13 @@ The following code add a second toolbar.
     }}
 </section>
 ```
-![Wysiwyg with extended toolbar - editmode](./doc/img/editables_wysiwyg_toolbar_editmode.png)
 
 ### Custom configuration for Quill
 
 A list of configuration options you can find in the [Quill toolbar documentation](https://quilljs.com/docs/modules/toolbar).
 
 The WYSIWYG editable allows us to specify the toolbar.
-If you have to limit styling options (for example only basic styles like `<b>` tag and lists would be allowed), just use `toolbar1` option.
+If you have to limit styling options (for example only basic styles like `<b>` tag and lists would be allowed), just use `toolbar` option.
 
 ```twig
 <section id="marked-content">

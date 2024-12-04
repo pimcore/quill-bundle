@@ -26,8 +26,14 @@ The following code customize the toolbar.
 ```twig
 <section id="marked-content">
     {{  pimcore_wysiwyg("specialContent", {
-            toolbar: [{ 'header': 1 }, { 'header': 2 }]
-        }) 
+            modules: {
+                toolbar: {
+                    container: [
+                        [{ header: [1, 2, 3, 4, 5, 6, false] }]
+                    ]
+                } 
+            }
+        })
     }}
 </section>
 ```
@@ -42,8 +48,14 @@ If you have to limit styling options (for example only basic styles like `<b>` t
 ```twig
 <section id="marked-content">
     {{  pimcore_wysiwyg("specialContent", {
-        toolbar: [{ 'header': 1 }, { 'header': 2 }]
-        }) 
+            modules: {
+                toolbar: {
+                    container: [
+                        [{ header: [1, 2, 3, 4, 5, 6, false] }]
+                    ]
+                } 
+            }
+        })
     }}
 </section>
 ```

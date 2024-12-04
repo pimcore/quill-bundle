@@ -43,6 +43,7 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
         return [
             '/bundles/pimcorequill/css/editor.css',
             '/bundles/pimcorequill/quill/quill.snow.css',
+            '/bundles/pimcorequill/quill/quill.bubble.css',
             '/bundles/pimcorequill/quill-table-better/quill-table-better.css',
         ];
     }

@@ -102,34 +102,7 @@ pimcore.bundle.quill.editor = Class.create({
 
         const finalConfig = Object.assign({
             theme: 'snow',
-            modules: {
-                table: false,
-                'table-better': {
-                    language: 'en_US',
-                    menus: ['column', 'row', 'merge', 'table', 'cell', 'wrap', 'delete'],
-                    toolbarTable: true
-                },
-                keyboard: {
-                    bindings: QuillTableBetter.keyboardBindings
-                },
-                toolbar: {
-                    container: [
-                        [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                        ['bold', 'italic'],
-                        [{ align: [] }],
-                        [{ list: 'ordered' }, { list: 'bullet' }],
-                        [{ indent: '-1' }, { indent: '+1' }],
-                        ['blockquote'],
-                        ['link', 'table-better'],
-                        ['clean'],
-                    ]
-                },
-                history: {
-                    delay: 700,
-                    maxStack: 200,
-                    userOnly: true
-                }
-            }
+            modules: { }
         }, defaultConfig, this.config);
 
         document.dispatchEvent(new CustomEvent(pimcore.events.createWysiwygConfig, {
@@ -138,6 +111,8 @@ pimcore.bundle.quill.editor = Class.create({
                 context: e.detail.context
             }
         }));
+
+        this.setDefaultConfig(finalConfig);
 
         //Workaround: https://github.com/attoae/quill-table-better/issues/12#issuecomment-2347920271
         const textareaElement = document.getElementById(textareaId);
@@ -153,7 +128,7 @@ pimcore.bundle.quill.editor = Class.create({
 
         this.activeEditor.on('text-change', () => {
             const tableModule = this.activeEditor.getModule('table-better');
-            tableModule.deleteTableTemporary();
+            tableModule?.deleteTableTemporary();
             document.dispatchEvent(new CustomEvent(pimcore.events.changeWysiwyg, {
                 detail: {
                     e: {target:{id: textareaId}},
@@ -211,6 +186,10 @@ pimcore.bundle.quill.editor = Class.create({
 
         if (data.elementType === "asset") {
             if (data.type === "image" && textIsSelected === false) {
+                if(this.activeEditor.options.formats && !this.activeEditor.options.formats.includes('image')) {
+                    return;
+                }
+
                 // images bigger than 600px or formats which cannot be displayed by the browser directly will be
                 // converted by the pimcore thumbnailing service so that they can be displayed in the editor
                 let defaultWidth = 600;
@@ -274,65 +253,81 @@ pimcore.bundle.quill.editor = Class.create({
 
     },
 
+    setDefaultConfig: function (config) {
+        const modules = config.modules
+        if (!modules.hasOwnProperty('table')) {
+            modules.table = false;
+        }
+
+        if (!modules.hasOwnProperty('table-better')) {
+            modules['table-better'] = {
+                language: 'en_US',
+                menus: ['column', 'row', 'merge', 'table', 'cell', 'wrap', 'delete'],
+                toolbarTable: true
+            };
+        }
+
+        if(!modules.hasOwnProperty('keyboard')) {
+            modules.keyboard = {
+                bindings: QuillTableBetter.keyboardBindings
+            };
+        }
+
+        if(!modules.hasOwnProperty('toolbar')) {
+            modules.toolbar = {
+                container: [
+                    ['undo', 'redo'],
+                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                    ['bold', 'italic'],
+                    [{ align: [] }],
+                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    [{ indent: '-1' }, { indent: '+1' }],
+                    ['blockquote'],
+                    ['link', 'table-better'],
+                    [ 'clean', 'html-edit'],
+                ]
+            };
+        }
+
+        if(!modules.hasOwnProperty('history')) {
+            modules.history = {
+                delay: 700,
+                maxStack: 200,
+                userOnly: true
+            };
+        }
+
+        return config;
+    },
+
     initializeToolbar: function () {
-        const historyGroup = this.prependToolbarGroup();
-        this.addToolbarBtn(historyGroup,
-          () => {this.activeEditor.history.undo()},
-          'ql-undo'
+        this.createToolbarBtn(
+            'undo',
+            () => {this.activeEditor.history.undo()},
         );
-        this.addToolbarBtn(historyGroup,
-          () => {this.activeEditor.history.redo()},
-          'ql-redo'
+        this.createToolbarBtn(
+            'redo',
+            () => {this.activeEditor.history.redo()},
         );
-
-
-        const htmlEditGroup = this.appendToolbarGroup();
-        this.addToolbarBtn(htmlEditGroup,
-          this.openHtmlEdit.bind(this),
-          'ql-html-edit',
-          '<>'
+        this.createToolbarBtn(
+            'html-edit',
+            this.openHtmlEdit.bind(this),
+            '<>'
         );
 
         this.setHiddenForToolbar(this.activeEditor, true);
     },
 
-    prependToolbarGroup: function () {
-        const toolbar = this.activeEditor.getModule("toolbar").container;
-
-        const spanElement = document.createElement("span");
-        spanElement.setAttribute("class", "ql-formats");
-
-        toolbar.prepend(spanElement);
-        return spanElement;
-    },
-
-    appendToolbarGroup: function () {
-        const toolbar = this.activeEditor.getModule("toolbar").container;
-
-        const spanElement = document.createElement("span");
-        spanElement.setAttribute("class", "ql-formats");
-
-        toolbar.append(spanElement);
-        return spanElement;
-    },
-
-    addToolbarBtn: function (group, onClick, className = '', innerHTML = '', btnTitle = '') {
-       const htmlButton = this.createToolbarBtn(onClick, className, innerHTML, btnTitle);
-       group.appendChild(htmlButton);
-    },
-
-    createToolbarBtn: function (onClick, className = '', innerHTML, btnTitle = '') {
-        const htmlButton = document.createElement("button");
-        htmlButton.onclick = function (e) {
+    createToolbarBtn: function (className, onClick, innerHTML = '') {
+        const toolbarBtn = document.getElementsByClassName('ql-' + className)[0];
+        if (!toolbarBtn) {
+            return;
+        }
+        toolbarBtn.innerHTML = innerHTML;
+        toolbarBtn.onclick = function (e) {
             e.preventDefault();
             onClick(e);
         };
-        htmlButton.title = btnTitle;
-        htmlButton.innerHTML = innerHTML;
-        htmlButton.type = "button";
-        htmlButton.setAttribute("class", className);
-
-        return htmlButton;
     },
 
     showOnlyActiveToolbar: function () {
@@ -422,7 +417,7 @@ pimcore.bundle.quill.editor = Class.create({
         this.modalBackground.style.display = "block";
         const textarea = this.modalBackground.getElementsByTagName('textarea')[0];
         const tableModule = this.activeEditor.getModule('table-better');
-        tableModule.deleteTableTemporary();
+        tableModule?.deleteTableTemporary();
         textarea.innerHTML = this.activeEditor.getSemanticHTML();
     },
 

@@ -25,6 +25,10 @@
     background-size: 18px;
 }
 
+.ql-toolbar .ql-formats :is(button.ql-undo,button.ql-redo,  button.ql-html-edit):focus {
+    outline: unset;
+}
+
 .ql-toolbar .ql-formats button.ql-undo {
     background-image: url(icons/arrow-counterclockwise.svg);
 }
@@ -34,7 +38,8 @@
 }
 
 .ql-toolbar .ql-formats button.ql-html-edit {
-    display: contents;
+    bottom: 6px;
+    position: relative;
 }
 
 .ql-operate-block + .ql-table-properties-form {

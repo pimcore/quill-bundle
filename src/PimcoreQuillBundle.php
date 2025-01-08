@@ -33,7 +33,6 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
         return [
             '/bundles/pimcorequill/quill/quill.js',
             '/bundles/pimcorequill/quill-table-better/quill-table-better.js',
-            '/bundles/pimcorequill/quill-html-edit-button/quill.htmlEditButton.min.js',
             '/bundles/pimcorequill/js/editor.js',
         ];
     }

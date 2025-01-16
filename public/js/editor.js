@@ -311,23 +311,24 @@ pimcore.bundle.quill.editor = Class.create({
         );
         this.createToolbarBtn(
             'html-edit',
-            this.openHtmlEdit.bind(this),
-            '<>'
+            this.openHtmlEdit.bind(this)
         );
 
         this.setHiddenForToolbar(this.activeEditor, true);
     },
 
     createToolbarBtn: function (className, onClick, innerHTML = '') {
-        const toolbarBtn = document.getElementsByClassName('ql-' + className)[0];
-        if (!toolbarBtn) {
+        const toolbarBtns = document.getElementsByClassName('ql-' + className);
+        if (!toolbarBtns) {
             return;
         }
-        toolbarBtn.innerHTML = innerHTML;
-        toolbarBtn.onclick = function (e) {
-            e.preventDefault();
-            onClick(e);
-        };
+        for (let toolbarBtn of toolbarBtns) {
+            toolbarBtn.innerHTML = innerHTML;
+            toolbarBtn.onclick = function (e) {
+                e.preventDefault();
+                onClick(e);
+            };
+        }
     },
 
     showOnlyActiveToolbar: function () {
@@ -418,7 +419,7 @@ pimcore.bundle.quill.editor = Class.create({
         const textarea = this.modalBackground.getElementsByTagName('textarea')[0];
         const tableModule = this.activeEditor.getModule('table-better');
         tableModule?.deleteTableTemporary();
-        textarea.innerHTML = this.activeEditor.getSemanticHTML();
+        textarea.value = this.activeEditor.getSemanticHTML();
     },
 
     setEditorContent: function (html) {

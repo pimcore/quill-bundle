@@ -38,8 +38,7 @@
 }
 
 .ql-toolbar .ql-formats button.ql-html-edit {
-    bottom: 6px;
-    position: relative;
+    background-image: url(icons/code.svg);
 }
 
 .ql-operate-block + .ql-table-properties-form {

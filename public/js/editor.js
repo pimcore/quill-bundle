@@ -429,6 +429,7 @@ pimcore.bundle.quill.editor = Class.create({
             text: '\n'
         });
         this.activeEditor.updateContents(delta, Quill.sources.USER);
+        this.activeEditor.history.clear();
     }
 })
 

@@ -9,7 +9,7 @@ Pimcore.pluginSystem.registerPlugin({
 
   // Register and overwrite services here
   onInit: ({ container }): void => {
-    console.log('Hello from the quill bundle plugin!')
+    console.log('Hello from the quill bundle plugin.')
   },
 
   // register modules here

@@ -1,0 +1,9 @@
+{
+  "entrypoints": {
+    "main": {
+      "js": [
+        "/bundles/pimcorequill/build/studio/main.22e01e43.js"
+      ]
+    }
+  }
+}

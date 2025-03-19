@@ -17,8 +17,9 @@ use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\PimcoreBundleAdminClassicInterface;
 use Pimcore\Extension\Bundle\Traits\BundleAdminClassicTrait;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
+use Pimcore\Bundle\StudioUiBundle\Extension\Bundle\PimcoreBundleStudioUiInterface;
 
-class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface
+class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleAdminClassicInterface, PimcoreBundleStudioUiInterface
 {
     use BundleAdminClassicTrait;
     use PackageVersionTrait;
@@ -55,5 +56,17 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
     public function getEditmodeJsPaths(): array
     {
         return $this->getJsPaths();
+    }
+
+
+
+    public function getWebpackEntryPointsJsonLocations(): array
+    {
+        return glob($this->getPath() . '/public/studio/build/*/entrypoints.json');
+    }
+
+    public function getWebpackEntryPoints(): array
+    {
+        return ['main'];
     }
 }

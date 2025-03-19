@@ -1,11 +1,20 @@
 # License
 Copyright (C) Pimcore GmbH
 
-This software is available under two different licenses:
-* GNU General Public License version 3 (GPLv3) as Pimcore Community Edition
+This software is available under two different licensing options:
+* Pimcore Open Core License (POCL) + GNU General Public License version 3 (GPLv3) as Pimcore Community Edition
+    * All contents inside of `/assets/studio/` and `/public/studio/` are licensed under the Pimcore Open Core License (POCL).
+    * All contents outside of `/assets/studio/` and `/public/studio/` are licensed under the GNU General Public License version 3 (GPLv3).
 * Pimcore Commercial License (PCL)
 
-The default Pimcore license, without a valid Pimcore Commercial License agreement, is the Open-Source GPLv3 license.
+## Pimcore Community Edition
+If you decide to choose the Pimcore Community Edition, you must comply with the following terms: 
+
+### Pimcore Open Core License (POCL)
+
+> For all contents inside of `/assets/studio/` and `/public/studio/`
+
+The `pocl.txt` file in the root of this repository contains the Pimcore Open Core License (POCL) licensing terms.
 
 ## GNU General Public License version 3 (GPLv3)
 If you decide to choose the GPLv3 license, you must comply with the following terms:

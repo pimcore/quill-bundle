@@ -32,6 +32,11 @@ Thumbs.db
 /node_modules
 package-lock.json
 
+# Studio related files
+assets/studio/node_modules
+assets/studio/dist/*
+!assets/studio/dist/.gitkeep
+
 # code style fixer
 .php_cs
 .php_cs.cache

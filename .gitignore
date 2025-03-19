@@ -30,7 +30,6 @@ Thumbs.db
 /vendor
 
 /node_modules
-package-lock.json
 
 # Studio related files
 public/studio/build

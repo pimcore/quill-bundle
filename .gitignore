@@ -32,7 +32,6 @@ Thumbs.db
 /node_modules
 
 # Studio related files
-public/studio/build
 assets/studio/node_modules
 assets/studio/dist/*
 !assets/studio/dist/.gitkeep

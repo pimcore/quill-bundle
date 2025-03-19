@@ -5,7 +5,9 @@
     "dev-server": "encore dev-server --port 3030 --hot",
     "dev": "encore dev",
     "watch": "encore dev --watch",
-    "build": "encore production --progress"
+    "build": "encore production --progress",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./js",
+    "lint-fix": "eslint --ext .js,.jsx,.ts,.tsx ./js --fix"
   },
   "license": "PEL",
   "private": true,

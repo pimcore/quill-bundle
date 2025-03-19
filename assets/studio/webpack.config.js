@@ -23,7 +23,7 @@ Encore
   // directory where compiled assets will be stored
   .setOutputPath(buildPath)
   // public path used by the web server to access the output path
-  .setPublicPath('/bundles/pimcorequill/build/studio')
+  .setPublicPath('/bundles/pimcorequill/studio/build/' + buildId)
 
   .addExternals({
     'Pimcore': 'Pimcore',

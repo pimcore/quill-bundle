@@ -33,6 +33,7 @@ Thumbs.db
 package-lock.json
 
 # Studio related files
+public/studio/build
 assets/studio/node_modules
 assets/studio/dist/*
 !assets/studio/dist/.gitkeep

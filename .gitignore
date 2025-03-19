@@ -35,7 +35,7 @@ Thumbs.db
 assets/studio/node_modules
 assets/studio/dist/*
 !assets/studio/dist/.gitkeep
-pimcore-studio-ui-bundle-0.0.1.tgz
+#pimcore-studio-ui-bundle-0.0.1.tgz
 
 # code style fixer
 .php_cs

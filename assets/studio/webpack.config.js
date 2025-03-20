@@ -8,6 +8,10 @@ const buildId = uuid.v4();
 const fs = require('fs');
 const buildPath = path.resolve(__dirname, '..', '..', 'public', 'studio', 'build', buildId);
 
+if (fs.existsSync( path.resolve(__dirname,'..', '..', 'public', 'studio', 'build'))) {
+  fs.rmSync(path.resolve(__dirname, '..', '..', 'public', 'studio', 'build'), { recursive: true });
+}
+
 if (!fs.existsSync(buildPath)) {
   fs.mkdirSync(buildPath, { recursive: true });
 }

@@ -13,12 +13,11 @@ declare(strict_types=1);
 
 namespace Pimcore\Bundle\QuillBundle\DependencyInjection;
 
-
 use Pimcore\Bundle\StudioUiBundle\Webpack\WebpackEntryPointProviderInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class PimcoreQuillExtension extends Extension
 {
@@ -32,6 +31,6 @@ final class PimcoreQuillExtension extends Extension
 
         if (interface_exists(WebpackEntryPointProviderInterface::class)) {
             $loader->load('services_studio.yaml');
-        } 
+        }
     }
 }

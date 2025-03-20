@@ -1,6 +1,5 @@
 import { Pimcore } from '@pimcore/studio-ui-bundle'
-// import { serviceIds } from '@pimcore/studio-ui-bundle/app'
-import QuillEditor from './quill-editor/quill-editor'
+import { QuillEditorModule } from './modules/quill-editor'
 
 if (module.hot !== undefined) {
   module.hot.accept()
@@ -11,8 +10,7 @@ Pimcore.pluginSystem.registerPlugin({
 
   // Register and overwrite services here
   onInit: ({ container }): void => {
-    container.rebind('wysiwyg').toConstantValue(QuillEditor)
-    console.log('hello from quill.')
+
   },
 
   // register modules here

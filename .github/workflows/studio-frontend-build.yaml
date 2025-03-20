@@ -52,7 +52,11 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./assets/studio
-        run: npm ci & npm install pimcore-studio-ui-bundle-0.0.1.tgz
+        run: npm ci
+
+      - name: Install studio npm package
+        working-directory: ./assets/studio
+        run: npm install pimcore-studio-ui-bundle-0.0.1.tgz
 
 
   lint:

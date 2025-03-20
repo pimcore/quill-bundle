@@ -1,0 +1,88 @@
+/*!
+ * 
+ *       /**
+ *        * Pimcore
+ *        *
+ *        * This source file is available under two different licenses:
+ *        * - Pimcore Open Core License (POCL)
+ *        * - Pimcore Commercial License (PCL)
+ *        * Full copyright and license information is available in
+ *        * LICENSE.md which is distributed with this source code.
+ *        *
+ *        *  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
+ *        *  @license    https://github.com/pimcore/studio-ui-bundle/blob/1.x/LICENSE.md POCL and PCL
+ *        * /
+ *
+ */
+
+/*! @Pimcore/app/config/app-config */
+
+/*! @Pimcore/app/config/date-time */
+
+/*! @Pimcore/app/config/services/service-ids */
+
+/*! @Pimcore/app/depency-injection */
+
+/*! @Pimcore/app/router/router */
+
+/*! @Pimcore/app/store */
+
+/*! dll-reference studio_core */
+
+/*!****************************!*\
+  !*** ./js/src/sdk/main.ts ***!
+  \****************************/
+
+/*!******************************!*\
+  !*** external "studio_core" ***!
+  \******************************/
+
+/*!*********************************!*\
+  !*** ./js/src/sdk/app/index.ts ***!
+  \*********************************/
+
+/*!*********************************************************************************!*\
+  !*** delegated ./js/src/core/app/store/index.ts from dll-reference studio_core ***!
+  \*********************************************************************************/
+
+/*!************************************************************************************!*\
+  !*** delegated ./js/src/core/app/router/router.tsx from dll-reference studio_core ***!
+  \************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** delegated ./js/src/core/app/config/app-config.ts from dll-reference studio_core ***!
+  \***************************************************************************************/
+
+/*!***************************************************************************************!*\
+  !*** delegated ./js/src/core/app/config/date-time.tsx from dll-reference studio_core ***!
+  \***************************************************************************************/
+
+/*!*********************************************************************************************!*\
+  !*** delegated ./js/src/core/app/depency-injection/index.ts from dll-reference studio_core ***!
+  \*********************************************************************************************/
+
+/*!*************************************************************************************************!*\
+  !*** delegated ./js/src/core/app/config/services/service-ids.ts from dll-reference studio_core ***!
+  \*************************************************************************************************/
+
+/**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/**
+* Pimcore
+*
+* This source file is available under two different licenses:
+* - Pimcore Open Core License (POCL)
+* - Pimcore Commercial License (PCL)
+* Full copyright and license information is available in
+* LICENSE.md which is distributed with this source code.
+*
+*  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.org)
+*  @license    https://github.com/pimcore/studio-ui-bundle/blob/1.x/LICENSE.md POCL and PCL
+*/

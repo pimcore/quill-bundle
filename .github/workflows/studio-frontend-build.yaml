@@ -121,6 +121,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Install studio npm package
+        working-directory: ./assets/studio
+        run: npm install pimcore-studio-ui-bundle-0.0.1.tgz
+
       - name: Run production build
         working-directory: ./assets/studio
         run: npm run build

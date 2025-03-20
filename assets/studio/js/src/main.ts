@@ -16,6 +16,6 @@ Pimcore.pluginSystem.registerPlugin({
   // register modules here
   onStartup: ({ moduleSystem }): void => {
     moduleSystem.registerModule(QuillEditorModule)
-    console.log('hello from quill...')
+    alert('Hello from quill...')
   }
 })

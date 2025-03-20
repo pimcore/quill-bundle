@@ -12,7 +12,7 @@ Pimcore.pluginSystem.registerPlugin({
   // Register and overwrite services here
   onInit: ({ container }): void => {
     container.rebind(serviceIds.wysiwyg).toConstantValue(QuillEditor)
-    console.log('hello from quill')
+    console.log('hello from quill.')
   },
 
   // register modules here

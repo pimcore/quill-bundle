@@ -7,7 +7,7 @@ export const QuillEditorModule: AbstractModule = {
   onInit: (): void => {
     const componentRegistry = container.get<ComponentRegistry>(serviceIds['App/ComponentRegistry/ComponentRegistry'])
 
-    componentRegistry.override('wysiwygEditor', {
+    componentRegistry.override({
       component: QuillEditor,
       name: 'wysiwygEditor'
     })

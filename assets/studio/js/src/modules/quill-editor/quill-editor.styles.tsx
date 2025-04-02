@@ -17,15 +17,40 @@ export const useStyles = createStyles(({ css, token }) => {
   return {
     editor: css`
       border: 1px solid ${token.colorBorder};
-      padding: ${token.paddingSM}px;
       border-radius: ${token.borderRadius}px;
       min-height: 100px;
+      min-width: 200px;
       background-color: ${token.colorBgContainer};
       cursor: text;
 
-      &[contenteditable='false'] {
+      div[contenteditable='false'] {
         background-color: ${token.colorBgContainerDisabled};
         cursor: not-allowed;
+      }
+      
+      .ql-toolbar {
+        border: none;
+        border-bottom: 1px solid ${token.colorBorder};
+      }
+      
+      .ql-container {
+        border: none;
+      }
+      
+      .ql-undo {
+        background-image: url(../../../../icons/arrow-counterclockwise.svg);
+      }      
+      
+      .ql-redo {
+        background-image: url(../../../../icons/arrow-clockwise.svg);
+      }
+      
+      .ql-html-edit {
+        background-image: url(../../../../icons/code.svg);
+      }
+
+      .ql-operate-block + .ql-table-properties-form {
+        z-index: 9999;
       }
     `
   }

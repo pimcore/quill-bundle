@@ -11,7 +11,7 @@
  *  @license    https://github.com/pimcore/studio-ui-bundle/blob/1.x/LICENSE.md POCL and PCL
  */
 
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
 import { type WysiwygEditorRef, type WysiwygProps } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { useStyles } from './quill-editor.styles'
 import { isNull } from 'lodash'
@@ -29,20 +29,16 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
   placeholder,
   editorConfig
 }, ref): React.JSX.Element => {
-  const editorRef = useRef<HTMLDivElement>(null)
+  const editorRef = useRef<WysiwygEditorRef>(null)
   const { styles } = useStyles()
 
   useImperativeHandle(ref, (): WysiwygEditorRef => ({
     onDrop: (info: DragAndDropInfo): void => {
-      console.log(info)
+      if (!isNull(editorRef.current)) {
+        editorRef.current.onDrop(info)
+      }
     }
   }))
-
-  useEffect(() => {
-    if (!isNull(editorRef.current) && editorRef.current.innerHTML !== value) {
-      editorRef.current.innerHTML = value ?? ''
-    }
-  }, [value])
 
   const handleInput = (editorHtml: string): void => {
     if (onChange !== undefined && onChange !== null) {

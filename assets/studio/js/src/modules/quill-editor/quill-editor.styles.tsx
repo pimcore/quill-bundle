@@ -16,6 +16,7 @@ import { createStyles } from 'antd-style'
 export const useStyles = createStyles(({ css, token }) => {
   return {
     editor: css`
+      overflow: auto;
       border: 1px solid ${token.colorBorder};
       border-radius: ${token.borderRadius}px;
       min-height: 100px;
@@ -36,17 +37,23 @@ export const useStyles = createStyles(({ css, token }) => {
       .ql-container {
         border: none;
       }
-      
-      .ql-undo {
-        background-image: url(../../../../icons/arrow-counterclockwise.svg);
-      }      
-      
-      .ql-redo {
-        background-image: url(../../../../icons/arrow-clockwise.svg);
+
+      .ql-toolbar .ql-formats :is(button.ql-undo,button.ql-redo,  button.ql-html-edit) {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 18px;
       }
       
-      .ql-html-edit {
-        background-image: url(../../../../icons/code.svg);
+      .ql-toolbar .ql-undo {
+        background-image: url(/bundles/pimcorequill/css/icons/arrow-counterclockwise.svg);
+      }
+
+      .ql-toolbar .ql-redo {
+        background-image: url(/bundles/pimcorequill/css/icons/arrow-clockwise.svg);
+      }
+
+      .ql-toolbar .ql-html-edit {
+        background-image: url(/bundles/pimcorequill/css/icons/code.svg);
       }
 
       .ql-operate-block + .ql-table-properties-form {

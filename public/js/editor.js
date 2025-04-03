@@ -218,7 +218,7 @@ pimcore.bundle.quill.editor = Class.create({
                     }
 
                     if (data.imageWidth < defaultWidth) {
-                        additionalAttributes.defaultWidth = data.imageWidth;
+                        additionalAttributes.width = data.imageWidth;
                     }
 
                 }

@@ -56,6 +56,7 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
         editorConfig={ editorConfig }
         maxCharacters={ maxCharacters }
         onTextChange={ handleInput }
+        placeholder={ placeholder }
         readOnly={ disabled }
         ref={ editorRef }
       />

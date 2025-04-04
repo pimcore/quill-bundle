@@ -27,6 +27,7 @@ interface EditorProps {
   onTextChange?: (a1) => void
   maxCharacters?: number
   editorConfig?: Record<string, any>
+  placeholder?: string
   readOnly?: boolean
   ref?: React.Ref<WysiwygEditorRef>
 }
@@ -38,6 +39,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     onTextChange,
     maxCharacters,
     editorConfig,
+    placeholder = '',
     readOnly = false
   },
   ref): React.JSX.Element => {
@@ -78,6 +80,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       setDefaultConfig(finalConfig)
 
       const quill = new Quill(editorContainer, finalConfig as QuillOptions)
+      editorContainer.getElementsByClassName('ql-editor')[0].setAttribute('data-placeholder', placeholder)
 
       quill.enable(!readOnly)
       setEditor(quill)

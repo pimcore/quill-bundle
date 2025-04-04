@@ -19,6 +19,7 @@ import {
 } from '@pimcore/studio-ui-bundle/components'
 import { type WysiwygEditorRef } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { toCssDimension } from '@pimcore/studio-ui-bundle/utils'
+import { useTranslation } from '@pimcore/studio-ui-bundle/app'
 
 interface EditorProps {
   defaultValue?: string
@@ -40,6 +41,8 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     readOnly = false
   },
   ref): React.JSX.Element => {
+    const { t } = useTranslation()
+
     const containerRef = useRef<HTMLDivElement>(null)
     const onTextChangeRef = useRef(onTextChange)
     const onSelectionChangeRef = useRef(onSelectionChange)
@@ -221,8 +224,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       const charCount = quill.getLength()
       if (maxCharacters !== undefined && maxCharacters !== 0 && charCount > maxCharacters) {
         quill.root.style.border = '1px solid red'
-        // TODO: translate
-        quill.root.setAttribute('title', ('maximum_length_is') + ' ' + maxCharacters)
+        quill.root.setAttribute('title', t('maximum_length_is') + ' ' + maxCharacters)
       }
     }
 

@@ -1,5 +1,6 @@
 import { Button, Modal, ModalFooter, TextArea } from '@pimcore/studio-ui-bundle/components'
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from '@pimcore/studio-ui-bundle/app'
 
 interface HtmlModalProps {
   open: boolean
@@ -9,13 +10,14 @@ interface HtmlModalProps {
 }
 
 export const HtmlModal = ({ open, setOpen, html, save }: HtmlModalProps): React.JSX.Element => {
+  const { t } = useTranslation()
+
   const [value, setValue] = useState(html)
 
   useEffect(() => {
     setValue(html)
   }, [html])
 
-  // TODO: translate
   return (
     <Modal
       footer={ <ModalFooter>
@@ -24,7 +26,7 @@ export const HtmlModal = ({ open, setOpen, html, save }: HtmlModalProps): React.
           key="cancel"
           onClick={ () => { setOpen(false) } }
         >
-          Cancel
+          {t('cancel')}
         </Button>
         <Button
           key="save"
@@ -34,7 +36,7 @@ export const HtmlModal = ({ open, setOpen, html, save }: HtmlModalProps): React.
           } }
           type={ 'primary' }
         >
-          Save
+          {t('save')}
         </Button>
       </ModalFooter> }
       onCancel={ () => { setOpen(false) } }

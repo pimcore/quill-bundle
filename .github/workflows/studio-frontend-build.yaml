@@ -122,7 +122,7 @@ jobs:
             ${{ runner.os }}-node-
       - name: Fetch pimcore studio npm package archive 
         working-directory: ./assets/studio
-        run: curl -o pimcore-studio-ui-bundle-0.0.1.tgz https://raw.githubusercontent.com/pimcore/studio-ui-bundle/wysiwyg/public/build/studio-npm-package.tgz
+        run: curl -o pimcore-studio-ui-bundle-0.0.1.tgz https://raw.githubusercontent.com/pimcore/studio-ui-bundle/1.x/public/build/studio-npm-package.tgz
 
       - name: Install studio npm package
         working-directory: ./assets/studio

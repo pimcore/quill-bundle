@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Pimcore\Bundle\QuillBundle\DependencyInjection;
 
-use Pimcore\Bundle\StudioUiBundle\Webpack\WebpackEntryPointProviderInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -29,7 +28,7 @@ final class PimcoreQuillExtension extends Extension
             new FileLocator(__DIR__ . '/../../config')
         );
 
-        if (interface_exists(WebpackEntryPointProviderInterface::class)) {
+        if ($container->hasExtension('pimcore_studio_ui')) {
             $loader->load('services_studio.yaml');
         }
     }

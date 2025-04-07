@@ -56,7 +56,9 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
 
     useImperativeHandle(ref, (): WysiwygEditorRef => ({
       onDrop: (info: DragAndDropInfo): void => {
-        onDropWysiwyg(editor!, info)
+        if (editor !== undefined) {
+          onDropWysiwyg(editor, info)
+        }
       }
     }))
 
@@ -127,7 +129,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
         <HtmlModal
           html={ html }
           open={ openHtmlModal }
-          save={ (code) => { setEditorContent(editor!, code) } }
+          save={ (code) => { if (editor !== undefined) { setEditorContent(editor, code) } } }
           setOpen={ setOpenHtmlModal }
         />
       </>
@@ -223,9 +225,8 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     function checkCharCount (quill: Quill): void {
       quill.root.style.border = ''
       quill.root.setAttribute('title', '')
-
       const charCount = quill.getLength()
-      if (maxCharacters !== undefined && maxCharacters !== 0 && charCount > maxCharacters) {
+      if (typeof maxCharacters === 'number' && maxCharacters !== 0 && charCount > maxCharacters) {
         quill.root.style.border = '1px solid red'
         quill.root.setAttribute('title', t('maximum_length_is') + ' ' + maxCharacters)
       }
@@ -309,11 +310,10 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
           }
 
           if (typeof data.width !== 'undefined') {
-            const settings = {
-              width: defaultWidth
-            }
-
-            uri = createImageThumbnailUrl(id as number, settings)
+            uri = createImageThumbnailUrl(id as number, {
+              width: defaultWidth,
+              mimeType: 'JPEG'
+            })
 
             if (data.width < defaultWidth &&
                 browserPossibleExtensions.includes(getFileExtension(data.fullPath as string))) {

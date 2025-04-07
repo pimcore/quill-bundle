@@ -11,40 +11,58 @@
  *  @license    https://github.com/pimcore/studio-ui-bundle/blob/1.x/LICENSE.md POCL and PCL
  */
 
-import React, { useEffect, useRef } from 'react'
-import { type WysiwygProps } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
-import { isNull } from 'lodash'
+import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import { type WysiwygEditorRef, type WysiwygProps } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { useStyles } from './quill-editor.styles'
+import { isNull } from 'lodash'
+import Editor from './editor'
+import { toCssDimension } from '@pimcore/studio-ui-bundle/utils'
+import { type DragAndDropInfo } from '@pimcore/studio-ui-bundle/components'
 
-export const QuillEditor = ({ value, onChange, disabled }: WysiwygProps): React.JSX.Element => {
-  const editorRef = useRef<HTMLDivElement>(null)
+export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
+  value,
+  onChange,
+  disabled,
+  width,
+  height,
+  maxCharacters,
+  placeholder,
+  editorConfig
+}, ref): React.JSX.Element => {
+  const editorRef = useRef<WysiwygEditorRef>(null)
   const { styles } = useStyles()
 
-  useEffect(() => {
-    if (!isNull(editorRef.current) && editorRef.current.innerHTML !== value) {
-      editorRef.current.innerHTML = value ?? ''
+  useImperativeHandle(ref, (): WysiwygEditorRef => ({
+    onDrop: (info: DragAndDropInfo): void => {
+      if (!isNull(editorRef.current)) {
+        editorRef.current.onDrop(info)
+      }
     }
-  }, [value])
+  }))
 
-  const handleInput = (event: React.FormEvent<HTMLDivElement>): void => {
+  const handleInput = (editorHtml: string): void => {
     if (onChange !== undefined && onChange !== null) {
-      onChange(event.currentTarget.innerHTML)
+      onChange(editorHtml)
     }
   }
 
   return (
-    <div>
-      <h1>I am the dummy quill editor from the quill bundle</h1>
-      <div
-        className={ styles.editor }
-        contentEditable={ disabled !== true }
-        onInput={ handleInput }
+    <div
+      className={ styles.editor }
+      style={ { maxWidth: toCssDimension(width), maxHeight: toCssDimension(height) } }
+    >
+      <Editor
+        defaultValue={ value ?? '' }
+        editorConfig={ editorConfig }
+        maxCharacters={ maxCharacters }
+        onTextChange={ handleInput }
+        placeholder={ placeholder }
+        readOnly={ disabled }
         ref={ editorRef }
-      >
-
-      </div>
+      />
     </div>
   )
-}
+})
 
+QuillEditor.displayName = 'QuillEditor'
 export default QuillEditor

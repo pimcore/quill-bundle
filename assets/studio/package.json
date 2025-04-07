@@ -58,7 +58,6 @@
     "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
-    "@pimcore/studio-ui-bundle": "file:pimcore-studio-ui-bundle-0.0.1.tgz",
     "quill": "^2.0.3",
     "quill-table-better": "^1.1.6",
     "react": "18.3.x",

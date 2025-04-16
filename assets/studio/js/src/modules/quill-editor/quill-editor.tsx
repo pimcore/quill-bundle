@@ -11,7 +11,7 @@
  *  @license    https://github.com/pimcore/studio-ui-bundle/blob/1.x/LICENSE.md POCL and PCL
  */
 
-import React, { forwardRef, useImperativeHandle, useRef } from 'react'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
 import { type WysiwygEditorRef, type WysiwygProps } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { useStyles } from './quill-editor.styles'
 import { isNull } from 'lodash'
@@ -31,6 +31,7 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
 }, ref): React.JSX.Element => {
   const editorRef = useRef<WysiwygEditorRef>(null)
   const { styles } = useStyles()
+  const timeoutRef = useRef(setTimeout(() => {}))
 
   useImperativeHandle(ref, (): WysiwygEditorRef => ({
     onDrop: (info: DragAndDropInfo): void => {
@@ -40,10 +41,14 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
     }
   }))
 
-  const handleInput = (editorHtml: string): void => {
-    if (onChange !== undefined && onChange !== null) {
-      onChange(editorHtml)
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current)
     }
+  }, [])
+
+  const handleInput = (editorHtml: string): void => {
+    startTimeout(editorHtml)
   }
 
   return (
@@ -62,6 +67,16 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
       />
     </div>
   )
+
+  function startTimeout (content: string): void {
+    clearTimeout(timeoutRef.current)
+
+    timeoutRef.current = setTimeout(() => {
+      if (onChange !== undefined && onChange !== null) {
+        onChange(content)
+      }
+    }, 700)
+  }
 })
 
 QuillEditor.displayName = 'QuillEditor'

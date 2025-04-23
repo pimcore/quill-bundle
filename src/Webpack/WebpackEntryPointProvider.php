@@ -18,20 +18,22 @@ use Pimcore\Bundle\StudioUiBundle\Webpack\WebpackEntryPointProviderInterface;
 /**
  * @internal
  */
-final class WebpackEntryPointProvider implements WebpackEntryPointProviderInterface
-{
-    public function getEntryPointsJsonLocations(): array
+if (interface_exists(WebpackEntryPointProviderInterface::class)) {
+    final class WebpackEntryPointProvider implements WebpackEntryPointProviderInterface
     {
-        return glob(__DIR__ . '/../../public/studio/build/*/entrypoints.json');
-    }
-
-    public function getEntryPoints(): array
-    {
-        return ['main'];
-    }
-
-    public function getOptionalEntryPoints(): array
-    {
-        return [];
+        public function getEntryPointsJsonLocations(): array
+        {
+            return glob(__DIR__ . '/../../public/studio/build/*/entrypoints.json');
+        }
+    
+        public function getEntryPoints(): array
+        {
+            return ['main'];
+        }
+    
+        public function getOptionalEntryPoints(): array
+        {
+            return [];
+        }
     }
 }

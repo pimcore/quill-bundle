@@ -25,12 +25,12 @@ if (interface_exists(WebpackEntryPointProviderInterface::class)) {
         {
             return glob(__DIR__ . '/../../public/studio/build/*/entrypoints.json');
         }
-    
+
         public function getEntryPoints(): array
         {
             return ['main'];
         }
-    
+
         public function getOptionalEntryPoints(): array
         {
             return [];

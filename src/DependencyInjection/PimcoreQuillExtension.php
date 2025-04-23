@@ -29,7 +29,7 @@ final class PimcoreQuillExtension extends Extension
         );
 
         if ($container->hasExtension('pimcore_studio_ui')) {
-            $loader->load('services_studio.yaml');
+            $loader->load('studio_ui.yaml');
         }
     }
 }

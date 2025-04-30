@@ -1,6 +1,6 @@
 {
   "name": "pimcore/quill-bundle",
-  "license": "Pimcore Open Core License (POCL)",
+  "license": "proprietary",
   "type": "pimcore-bundle",
   "config": {
     "discard-changes": true,

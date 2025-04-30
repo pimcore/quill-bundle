@@ -1,6 +1,6 @@
 # License overview of included 3rd party libraries
 
-The Pimcore project is licensed under the terms of the [GPLv3](LICENSE.md).
+The Pimcore project is licensed under the terms of the [POCL](LICENSE.md).
 
 
 However, Pimcore includes several third-party Open-Source libraries,

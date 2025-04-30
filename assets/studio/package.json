@@ -9,7 +9,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./js",
     "lint-fix": "eslint --ext .js,.jsx,.ts,.tsx ./js --fix"
   },
-  "license": "PEL",
+  "license": "Pimcore Open Core License (POCL)",
   "private": true,
   "devDependencies": {
     "@babel/preset-react": "^7.23.3",

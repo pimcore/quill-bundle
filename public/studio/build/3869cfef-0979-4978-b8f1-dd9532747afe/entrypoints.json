@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "main": {
+      "css": [
+        "/bundles/pimcorequill/studio/build/3869cfef-0979-4978-b8f1-dd9532747afe/main.6fa95c8b.css"
+      ],
+      "js": [
+        "/bundles/pimcorequill/studio/build/3869cfef-0979-4978-b8f1-dd9532747afe/main.fb7d6d38.js"
+      ]
+    }
+  }
+}

@@ -30,6 +30,9 @@
     "psr-4": {
       "Pimcore\\Bundle\\QuillBundle\\": "src/"
     }
+  },  
+  "conflict": {
+    "pimcore/studio-ui-bundle": "<0.5.20"
   },
   "extra": {
     "pimcore": {

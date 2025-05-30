@@ -5,6 +5,7 @@ import { pluginGenerateEntrypoints } from '@pimcore/studio-ui-bundle/rsbuild/plu
 import path from 'path'
 import fs from 'fs';
 import { v4 } from 'uuid';
+import packages from './package.json'
 
 const buildId = v4();
 const buildPath = path.resolve(__dirname, '..', '..', 'public', 'studio', 'build', buildId);
@@ -122,6 +123,7 @@ export default defineConfig({
         `,
       },
       shared: {
+        ...packages.dependencies,
         react: {
           singleton: true,
           eager: true,

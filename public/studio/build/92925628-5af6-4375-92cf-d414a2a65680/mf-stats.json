@@ -22,7 +22,7 @@
     "globalName": "pimcore_quill_bundle",
     "pluginVersion": "0.14.0",
     "prefetchInterface": false,
-    "publicPath": "/bundles/pimcorequill/studio/build/0779cbb0-58ad-4fdb-8915-294220dcbe3a/"
+    "publicPath": "/bundles/pimcorequill/studio/build/92925628-5af6-4375-92cf-d414a2a65680/"
   },
   "shared": [
     {
@@ -37,8 +37,83 @@
         "js": {
           "async": [],
           "sync": [
-            "static/js/195.13bd3b7f.js",
+            "static/js/269.6ea4f059.js",
             "static/js/remoteEntry.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "."
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^2.0.3",
+      "shareScope": "default",
+      "import": "quill",
+      "name": "quill",
+      "version": "2.0.3",
+      "eager": false,
+      "id": "pimcore_quill_bundle:quill",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/765.10839dbd.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "."
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^3.7.1",
+      "shareScope": "default",
+      "import": "antd-style",
+      "name": "antd-style",
+      "version": "3.7.1",
+      "eager": false,
+      "id": "pimcore_quill_bundle:antd-style",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/37.0478317e.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "usedIn": [
+        "."
+      ]
+    },
+    {
+      "singleton": true,
+      "requiredVersion": "^1.1.6",
+      "shareScope": "default",
+      "import": "quill-table-better",
+      "name": "quill-table-better",
+      "version": "1.1.6",
+      "eager": false,
+      "id": "pimcore_quill_bundle:quill-table-better",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/145.ab713703.js"
           ]
         },
         "css": {
@@ -62,7 +137,7 @@
         "js": {
           "async": [],
           "sync": [
-            "static/js/195.13bd3b7f.js",
+            "static/js/269.6ea4f059.js",
             "static/js/remoteEntry.js"
           ]
         },
@@ -132,20 +207,23 @@
       "id": "pimcore_quill_bundle:.",
       "name": ".",
       "requires": [
-        "react"
+        "react",
+        "quill",
+        "antd-style",
+        "quill-table-better"
       ],
       "file": "js/src/plugins.ts",
       "assets": {
         "js": {
           "sync": [
-            "static/js/async/85.f136a47a.js",
-            "static/js/async/__federation_expose_default_export.40283940.js"
+            "static/js/async/872.a9470a7d.js",
+            "static/js/async/__federation_expose_default_export.8b57ff93.js"
           ],
           "async": []
         },
         "css": {
           "sync": [
-            "static/css/async/85.1e3b2cc8.css"
+            "static/css/async/872.1e3b2cc8.css"
           ],
           "async": []
         }

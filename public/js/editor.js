@@ -126,10 +126,11 @@ pimcore.bundle.quill.editor = Class.create({
         this.activeEditor.on('text-change', () => {
             const tableModule = this.activeEditor.getModule('table-better');
             tableModule?.deleteTableTemporary();
+            const data = this.activeEditor.getSemanticHTML().replace(/<p>\s*<\/p>/g, '');
             document.dispatchEvent(new CustomEvent(pimcore.events.changeWysiwyg, {
                 detail: {
                     e: {target:{id: textareaId}},
-                    data: this.activeEditor.getSemanticHTML(),
+                    data: data,
                     context: e.detail.context
                 }
             }));

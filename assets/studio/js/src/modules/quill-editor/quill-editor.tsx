@@ -8,8 +8,8 @@
 *  @license    Pimcore Open Core License (POCL)
 */
 
-import React, { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
-import { type WysiwygEditorRef, type WysiwygProps } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import { type WysiwygEditorRef, type WysiwygProps, WysiwygContext } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { useStyles } from './quill-editor.styles'
 import { isNull } from 'lodash'
 import Editor from './editor'
@@ -24,11 +24,13 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
   height,
   maxCharacters,
   placeholder,
-  editorConfig
+  editorConfig,
+  context
 }, ref): React.JSX.Element => {
   const editorRef = useRef<WysiwygEditorRef>(null)
   const { styles } = useStyles()
   const timeoutRef = useRef(setTimeout(() => {}))
+  const [isFocused, setIsFocused] = useState(false)
 
   useImperativeHandle(ref, (): WysiwygEditorRef => ({
     onDrop: (info: DragAndDropInfo): void => {
@@ -50,13 +52,14 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
 
   return (
     <div
-      className={ styles.editor }
+      className={ `${context === WysiwygContext.DOCUMENT ? styles['editor-document'] : styles.editor} ${isFocused ? 'quill-editor-focused' : 'quill-editor-unfocused'}` }
       style={ { maxWidth: toCssDimension(width), maxHeight: toCssDimension(height) } }
     >
       <Editor
         defaultValue={ value ?? '' }
         editorConfig={ editorConfig }
         maxCharacters={ maxCharacters }
+        onFocusChange={ setIsFocused }
         onTextChange={ handleInput }
         placeholder={ placeholder }
         readOnly={ disabled }

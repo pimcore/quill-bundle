@@ -26,11 +26,61 @@ export const useStyles = createStyles(({ css, token }) => {
         cursor: not-allowed;
       }
       
-      .ql-toolbar {
+      .ql-container, .ql-toolbar {
         border: none;
-        border-bottom: 1px solid ${token.colorBorder};
+      }
+
+      .ql-toolbar .ql-formats :is(button.ql-undo,button.ql-redo,  button.ql-html-edit) {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 18px;
       }
       
+      .ql-toolbar .ql-undo {
+        background-image: url(/bundles/pimcorequill/css/icons/arrow-counterclockwise.svg);
+      }
+
+      .ql-toolbar .ql-redo {
+        background-image: url(/bundles/pimcorequill/css/icons/arrow-clockwise.svg);
+      }
+
+      .ql-toolbar .ql-html-edit {
+        background-image: url(/bundles/pimcorequill/css/icons/code.svg);
+      }
+
+      .ql-operate-block + .ql-table-properties-form {
+        z-index: 9999;
+      }
+
+      &.quill-editor-unfocused .ql-toolbar {
+        display: none;
+      }
+
+      &.quill-editor-focused .ql-toolbar {
+        display: block;
+        border-bottom: 1px solid ${token.colorBorder};
+      }
+
+      &.quill-editor-unfocused .ql-container {
+        border: none;
+      }
+    `,
+    'editor-document': css`
+      overflow: auto;
+      min-height: 100px;
+      min-width: 200px;
+      cursor: text;
+
+      div[contenteditable='false'] {
+        cursor: not-allowed;
+      }
+      
+      .ql-toolbar {
+        border: 1px solid ${token.colorBorder};
+        border-top-left-radius: ${token.borderRadius}px;
+        border-top-right-radius: ${token.borderRadius}px;
+      }
+
       .ql-container {
         border: none;
       }
@@ -55,6 +105,26 @@ export const useStyles = createStyles(({ css, token }) => {
 
       .ql-operate-block + .ql-table-properties-form {
         z-index: 9999;
+      }
+
+      &.quill-editor-unfocused .ql-toolbar {
+        display: none;
+      }
+      
+      &.quill-editor-focused .ql-toolbar {
+        display: block;
+      }
+      
+      &.quill-editor-unfocused .ql-container {
+        border: none;
+      }
+      
+      &.quill-editor-focused .ql-container {
+        border-left: 1px solid ${token.colorBorder};
+        border-right: 1px solid ${token.colorBorder};
+        border-bottom: 1px solid ${token.colorBorder};
+        border-bottom-left-radius: ${token.borderRadius}px;
+        border-bottom-right-radius: ${token.borderRadius}px;
       }
     `
   }

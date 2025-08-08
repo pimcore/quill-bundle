@@ -25,6 +25,7 @@ interface EditorProps {
   defaultValue?: string
   onSelectionChange?: (a1, a2, a3) => void
   onTextChange?: (a1) => void
+  onFocusChange?: (focused: boolean) => void
   maxCharacters?: number
   editorConfig?: Record<string, any>
   placeholder?: string
@@ -37,6 +38,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     defaultValue = '',
     onSelectionChange,
     onTextChange,
+    onFocusChange,
     maxCharacters,
     editorConfig,
     placeholder = '',
@@ -53,6 +55,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     const [openHtmlModal, setOpenHtmlModal] = useState(false)
     const [html, setHtml] = useState('')
     const [lastSelection, setLastSelection] = useState<Range>()
+    const blurTimeoutRef = useRef<number | null>(null)
 
     useImperativeHandle(ref, (): WysiwygEditorRef => ({
       onDrop: (info: DragAndDropInfo): void => {
@@ -101,9 +104,52 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
         onSelectionChangeRef.current?.(...args)
         setLastSelection(args[0] ?? args[1])
+        
+        const selection = args[0]
+        if (selection !== null && selection !== undefined) {
+          // Clear any pending blur timeout when we have a selection
+          if (blurTimeoutRef.current) {
+            clearTimeout(blurTimeoutRef.current)
+            blurTimeoutRef.current = null
+          }
+          onFocusChange?.(true)
+        }
       })
 
+      const editorElement = editorContainer.getElementsByClassName('ql-editor')[0] as HTMLElement
+      
+      if (editorElement) {
+        editorElement.addEventListener('focus', () => {
+          if (blurTimeoutRef.current) {
+            clearTimeout(blurTimeoutRef.current)
+            blurTimeoutRef.current = null
+          }
+          onFocusChange?.(true)
+        })
+        
+        editorElement.addEventListener('blur', () => {
+          blurTimeoutRef.current = window.setTimeout(() => {
+            onFocusChange?.(false)
+            blurTimeoutRef.current = null
+          }, 150) // 150ms delay to allow toolbar clicks
+        })
+      }
+      
+      const toolbarElement = editorContainer.getElementsByClassName('ql-toolbar')[0] as HTMLElement
+      if (toolbarElement) {
+        toolbarElement.addEventListener('mousedown', () => {
+          if (blurTimeoutRef.current) {
+            clearTimeout(blurTimeoutRef.current)
+            blurTimeoutRef.current = null
+          }
+          onFocusChange?.(true)
+        })
+      }
+
       return () => {
+        if (blurTimeoutRef.current) {
+          clearTimeout(blurTimeoutRef.current)
+        }
         setEditor(undefined)
         container!.innerHTML = ''
       }

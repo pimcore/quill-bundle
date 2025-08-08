@@ -104,11 +104,11 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       quill.on(Quill.events.SELECTION_CHANGE, (...args) => {
         onSelectionChangeRef.current?.(...args)
         setLastSelection(args[0] ?? args[1])
-        
+
         const selection = args[0]
         if (selection !== null && selection !== undefined) {
           // Clear any pending blur timeout when we have a selection
-          if (blurTimeoutRef.current) {
+          if (blurTimeoutRef.current !== null) {
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
@@ -117,16 +117,16 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       })
 
       const editorElement = editorContainer.getElementsByClassName('ql-editor')[0] as HTMLElement
-      
-      if (editorElement) {
+
+      if (editorElement !== null) {
         editorElement.addEventListener('focus', () => {
-          if (blurTimeoutRef.current) {
+          if (blurTimeoutRef.current !== null) {
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
           onFocusChange?.(true)
         })
-        
+
         editorElement.addEventListener('blur', () => {
           blurTimeoutRef.current = window.setTimeout(() => {
             onFocusChange?.(false)
@@ -134,11 +134,11 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
           }, 150) // 150ms delay to allow toolbar clicks
         })
       }
-      
+
       const toolbarElement = editorContainer.getElementsByClassName('ql-toolbar')[0] as HTMLElement
-      if (toolbarElement) {
+      if (toolbarElement !== null) {
         toolbarElement.addEventListener('mousedown', () => {
-          if (blurTimeoutRef.current) {
+          if (blurTimeoutRef.current !== null) {
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
@@ -147,7 +147,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       }
 
       return () => {
-        if (blurTimeoutRef.current) {
+        if (blurTimeoutRef.current !== null) {
           clearTimeout(blurTimeoutRef.current)
         }
         setEditor(undefined)

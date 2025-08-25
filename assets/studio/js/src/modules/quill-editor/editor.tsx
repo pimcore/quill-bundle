@@ -120,7 +120,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
 
       if (editorElement !== null) {
         editorElement.addEventListener('focus', () => {
-          if (blurTimeoutRef.current !== null) {
+          if (blurTimeoutRef.current !== null && blurTimeoutRef.current !== undefined) {
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
@@ -136,7 +136,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       }
 
       const toolbarElement = editorContainer.getElementsByClassName('ql-toolbar')[0] as HTMLElement
-      if (toolbarElement !== null) {
+      if (toolbarElement !== null && toolbarElement !== undefined) {
         toolbarElement.addEventListener('mousedown', () => {
           if (blurTimeoutRef.current !== null) {
             clearTimeout(blurTimeoutRef.current)
@@ -147,7 +147,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       }
 
       return () => {
-        if (blurTimeoutRef.current !== null) {
+        if (blurTimeoutRef.current !== null && blurTimeoutRef.current !== undefined) {
           clearTimeout(blurTimeoutRef.current)
         }
         setEditor(undefined)

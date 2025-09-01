@@ -117,6 +117,11 @@ export const useStyles = createStyles(({ css, token }) => {
       
       &.quill-editor-unfocused .ql-container {
         border: none;
+        padding: none;
+      }
+      
+      &.quill-editor-unfocused .ql-editor {
+        padding: unset;
       }
       
       &.quill-editor-focused .ql-container {

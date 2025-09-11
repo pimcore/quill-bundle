@@ -227,23 +227,28 @@ pimcore.bundle.quill.editor = Class.create({
                 return true;
             } else {
                 this.activeEditor.format('link', uri);
-                this.activeEditor.format('pimcore_id', id);
-                this.activeEditor.format('pimcore_type', 'asset');
-                return true;
+                const [leaf, offset] = this.activeEditor.getLeaf(retval.index + 1);
+                if (leaf && leaf.parent.domNode.nodeName === 'A') {
+                    leaf.parent.domNode.setAttribute('pimcore_id', id);
+                    leaf.parent.domNode.setAttribute('pimcore_type', 'asset');
+                    return true;
+                }
             }
         }
 
         this.activeEditor.format('link', uri);
-        this.activeEditor.format('pimcore_id', id);
-        if (data.elementType === "document" && (data.type === "page"
-          || data.type === "hardlink" || data.type === "link")) {
-            this.activeEditor.format('pimcore_type', 'document');
-            return true;
-        }
-
-        if (data.elementType === "object") {
-            this.activeEditor.format('pimcore_type', 'object');
-            return true;
+        const [leaf, offset] = this.activeEditor.getLeaf(retval.index + 1);
+        if (leaf && leaf.parent.domNode.nodeName === 'A') {
+            leaf.parent.domNode.setAttribute('pimcore_id', id);
+            if (data.elementType === "document" && (data.type === "page"
+              || data.type === "hardlink" || data.type === "link")) {
+                leaf.parent.domNode.setAttribute('pimcore_type', 'document');
+                return true;
+            }
+            if (data.elementType === "object") {
+                leaf.parent.domNode.setAttribute('pimcore_type', 'object');
+                return true;
+            }
         }
     },
 

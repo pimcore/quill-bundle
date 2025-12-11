@@ -52,7 +52,7 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
 
   return (
     <div
-      className={ `${context === WysiwygContext.DOCUMENT ? styles['editor-document'] : styles.editor} ${isFocused ? 'quill-editor-focused' : 'quill-editor-unfocused'}` }
+      className={ ['quill-editor', context === WysiwygContext.DOCUMENT ? styles['editor-document'] : styles.editor, isFocused ? 'quill-editor-focused' : 'quill-editor-unfocused'].join(' ') }
       style={ { maxWidth: toCssDimension(width), maxHeight: toCssDimension(height) } }
     >
       <Editor

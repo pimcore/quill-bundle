@@ -60,6 +60,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     const containerRef = useRef<HTMLDivElement>(null)
     const onTextChangeRef = useRef(onTextChange)
     const onSelectionChangeRef = useRef(onSelectionChange)
+    const onFocusChangeRef = useRef(onFocusChange)
 
     const [editor, setEditor] = useState<Quill>()
     const [openHtmlModal, setOpenHtmlModal] = useState(false)
@@ -75,11 +76,14 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       }
     }))
 
-    initQuill()
+    useEffect(() => {
+      initQuill()
+    }, [])
 
     useLayoutEffect(() => {
       onTextChangeRef.current = onTextChange
       onSelectionChangeRef.current = onSelectionChange
+      onFocusChangeRef.current = onFocusChange
     })
 
     useEffect(() => {
@@ -101,7 +105,6 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       setEditor(quill)
 
       initializeToolbar(quill)
-
       setEditorContent(quill, defaultValue)
 
       quill.on(Quill.events.TEXT_CHANGE, (...args) => {
@@ -122,7 +125,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
-          onFocusChange?.(true)
+          onFocusChangeRef.current?.(true)
         }
       })
 
@@ -134,16 +137,17 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
-          onFocusChange?.(true)
-        })
-
-        editorElement.addEventListener('blur', () => {
-          blurTimeoutRef.current = window.setTimeout(() => {
-            onFocusChange?.(false)
-            blurTimeoutRef.current = null
-          }, 150) // 150ms delay to allow toolbar clicks
+          onFocusChangeRef.current?.(true)
         })
       }
+
+      const handleClickOutside = (event: MouseEvent): void => {
+        if (containerRef.current !== null && !containerRef.current.contains(event.target as Node)) {
+          onFocusChangeRef.current?.(false)
+        }
+      }
+
+      document.addEventListener('mousedown', handleClickOutside)
 
       const toolbarElement = editorContainer.getElementsByClassName('ql-toolbar')[0] as HTMLElement
       if (toolbarElement !== null && toolbarElement !== undefined) {
@@ -152,11 +156,12 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
             clearTimeout(blurTimeoutRef.current)
             blurTimeoutRef.current = null
           }
-          onFocusChange?.(true)
+          onFocusChangeRef.current?.(true)
         })
       }
 
       return () => {
+        document.removeEventListener('mousedown', handleClickOutside)
         if (blurTimeoutRef.current !== null && blurTimeoutRef.current !== undefined) {
           clearTimeout(blurTimeoutRef.current)
         }
@@ -181,7 +186,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       <>
         <div
           ref={ containerRef }
-        ></div>
+        />
         <HtmlModal
           html={ html }
           open={ openHtmlModal }

@@ -1,0 +1,82 @@
+{
+  "allFiles": [
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js",
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill_quill_js.js",
+    "http://localhost:3032/static/js/async/__federation_expose_default_export.js",
+    "http://localhost:3032/static/js/main.js",
+    "http://localhost:3032/static/js/remoteEntry.js",
+    "http://localhost:3032/static/js/async/vendors-node_modules_antd-style_es_index_js.js",
+    "http://localhost:3032/static/js/vendors-node_modules_react-dom_index_js-node_modules_react_index_js-_module-federation_runtim-3ca597.js",
+    "http://localhost:3032/static/css/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.css",
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.js",
+    "http://localhost:3032/mf-stats.json",
+    "http://localhost:3032/mf-manifest.json",
+    "http://localhost:3032/main.html",
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js.map",
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill_quill_js.js.map",
+    "http://localhost:3032/static/js/async/__federation_expose_default_export.js.map",
+    "http://localhost:3032/main.d862f36488ea0b4e.hot-update.js.map",
+    "http://localhost:3032/static/js/main.js.map",
+    "http://localhost:3032/pimcore_quill_bundle.d862f36488ea0b4e.hot-update.js.map",
+    "http://localhost:3032/static/js/remoteEntry.js.map",
+    "http://localhost:3032/static/js/async/vendors-node_modules_antd-style_es_index_js.js.map",
+    "http://localhost:3032/static/js/vendors-node_modules_react-dom_index_js-node_modules_react_index_js-_module-federation_runtim-3ca597.js.map",
+    "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.js.map"
+  ],
+  "entries": {
+    "pimcore_quill_bundle": {
+      "assets": [
+        "static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.js.map",
+        "static/js/async/vendors-node_modules_antd-style_es_index_js.js.map",
+        "pimcore_quill_bundle.d862f36488ea0b4e.hot-update.js.map",
+        "static/js/remoteEntry.js.map",
+        "static/js/async/__federation_expose_default_export.js.map",
+        "static/js/async/vendors-node_modules_quill_quill_js.js.map",
+        "static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js.map"
+      ],
+      "initial": {
+        "js": [
+          "http://localhost:3032/static/js/remoteEntry.js"
+        ]
+      },
+      "async": {
+        "js": [
+          "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.js",
+          "http://localhost:3032/static/js/async/vendors-node_modules_antd-style_es_index_js.js",
+          "http://localhost:3032/static/js/async/__federation_expose_default_export.js",
+          "http://localhost:3032/static/js/async/vendors-node_modules_quill_quill_js.js",
+          "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js"
+        ],
+        "css": [
+          "http://localhost:3032/static/css/async/vendors-node_modules_quill-table-better_dist_quill-table-better_css-node_modules_quill_dist_q-ca34b2.css"
+        ]
+      }
+    },
+    "main": {
+      "assets": [
+        "static/js/vendors-node_modules_react-dom_index_js-node_modules_react_index_js-_module-federation_runtim-3ca597.js.map",
+        "static/js/async/vendors-node_modules_antd-style_es_index_js.js.map",
+        "main.d862f36488ea0b4e.hot-update.js.map",
+        "static/js/main.js.map",
+        "static/js/async/vendors-node_modules_quill_quill_js.js.map",
+        "static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js.map"
+      ],
+      "html": [
+        "http://localhost:3032/main.html"
+      ],
+      "initial": {
+        "js": [
+          "http://localhost:3032/static/js/vendors-node_modules_react-dom_index_js-node_modules_react_index_js-_module-federation_runtim-3ca597.js",
+          "http://localhost:3032/static/js/main.js"
+        ]
+      },
+      "async": {
+        "js": [
+          "http://localhost:3032/static/js/async/vendors-node_modules_antd-style_es_index_js.js",
+          "http://localhost:3032/static/js/async/vendors-node_modules_quill_quill_js.js",
+          "http://localhost:3032/static/js/async/vendors-node_modules_quill-table-better_dist_quill-table-better_js.js"
+        ]
+      }
+    }
+  }
+}

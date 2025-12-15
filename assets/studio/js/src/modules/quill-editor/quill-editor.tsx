@@ -1,14 +1,14 @@
 /**
-* This source file is available under the terms of the
-* Pimcore Open Core License (POCL)
-* Full copyright and license information is available in
-* LICENSE.md which is distributed with this source code.
-*
-*  @copyright  Copyright (c) Pimcore GmbH (http://www.pimcore.com)
-*  @license    Pimcore Open Core License (POCL)
-*/
+ * This source file is available under the terms of the
+ * Pimcore Open Core License (POCL)
+ * Full copyright and license information is available in
+ * LICENSE.md which is distributed with this source code.
+ *
+ *  @copyright  Copyright (c) Pimcore GmbH (https://www.pimcore.com)
+ *  @license    Pimcore Open Core License (POCL)
+ */
 
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react'
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { type WysiwygEditorRef, type WysiwygProps, WysiwygContext } from '@pimcore/studio-ui-bundle/modules/wysiwyg'
 import { useStyles } from './quill-editor.styles'
 import { isNull } from 'lodash'
@@ -29,7 +29,6 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
 }, ref): React.JSX.Element => {
   const editorRef = useRef<WysiwygEditorRef>(null)
   const { styles } = useStyles()
-  const timeoutRef = useRef(setTimeout(() => {}))
   const [isFocused, setIsFocused] = useState(false)
 
   useImperativeHandle(ref, (): WysiwygEditorRef => ({
@@ -40,19 +39,15 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
     }
   }))
 
-  useEffect(() => {
-    return () => {
-      clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
   const handleInput = (editorHtml: string): void => {
-    startTimeout(editorHtml)
+    if (onChange !== undefined && onChange !== null) {
+      onChange(editorHtml)
+    }
   }
 
   return (
     <div
-      className={ `${context === WysiwygContext.DOCUMENT ? styles['editor-document'] : styles.editor} ${isFocused ? 'quill-editor-focused' : 'quill-editor-unfocused'}` }
+      className={ ['quill-editor', context === WysiwygContext.DOCUMENT ? styles['editor-document'] : styles.editor, isFocused ? 'quill-editor-focused' : 'quill-editor-unfocused'].join(' ') }
       style={ { maxWidth: toCssDimension(width), maxHeight: toCssDimension(height) } }
     >
       <Editor
@@ -67,16 +62,6 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
       />
     </div>
   )
-
-  function startTimeout (content: string): void {
-    clearTimeout(timeoutRef.current)
-
-    timeoutRef.current = setTimeout(() => {
-      if (onChange !== undefined && onChange !== null) {
-        onChange(content)
-      }
-    }, 700)
-  }
 })
 
 QuillEditor.displayName = 'QuillEditor'

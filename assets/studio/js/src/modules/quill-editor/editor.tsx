@@ -185,6 +185,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     return (
       <>
         <div
+          className='editor'
           ref={ containerRef }
         />
         <HtmlModal
@@ -270,7 +271,11 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
     }
 
     function createToolbarBtn (className, onClick, innerHTML = ''): void {
-      const toolbarBtns = document.getElementsByClassName('ql-' + className)
+      if (containerRef.current === null) {
+        return
+      }
+
+      const toolbarBtns = containerRef.current.getElementsByClassName('ql-' + className)
       if (toolbarBtns.length === 0) {
         return
       }

@@ -71,11 +71,9 @@ export const QuillEditor = forwardRef<WysiwygEditorRef, WysiwygProps>(({
   function startTimeout (content: string): void {
     clearTimeout(timeoutRef.current)
 
-    timeoutRef.current = setTimeout(() => {
-      if (onChange !== undefined && onChange !== null) {
-        onChange(content)
-      }
-    }, 700)
+    if (onChange !== undefined && onChange !== null) {
+      onChange(content)
+    }
   }
 })
 

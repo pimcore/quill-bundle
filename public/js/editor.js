@@ -495,17 +495,14 @@ pimcore.bundle.quill.editor = Class.create({
                     });
                     
                     // Remove custom attributes from parent elements
-                    let parentNode = editorLink.parentElement;
-                    while (parentNode && parentNode !== this.activeEditor.root) {
-                        if (parentNode.hasAttribute('pimcore_id')) {
-                            parentNode.removeAttribute('pimcore_id');
-                        }
-                        if (parentNode.hasAttribute('pimcore_type')) {
-                            parentNode.removeAttribute('pimcore_type');
-                        }
-                        parentNode = parentNode.parentElement;
+                    const parentNode = editorLink.parentElement;
+                    if (parentNode.hasAttribute('pimcore_id')) {
+                        parentNode.removeAttribute('pimcore_id');
                     }
-                    
+                    if (parentNode.hasAttribute('pimcore_type')) {
+                        parentNode.removeAttribute('pimcore_type');
+                    }
+                
                     linkIndex++;
                 }
             }

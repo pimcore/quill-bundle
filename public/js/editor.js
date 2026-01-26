@@ -427,12 +427,89 @@ pimcore.bundle.quill.editor = Class.create({
 
     setEditorContent: function (html) {
         this.activeEditor.deleteText(0, this.activeEditor.getLength());
+        
+        // Parse HTML to extract custom link attributes before Quill processes it
+        const linkAttributes = this.getLinkAttributes(html);
+        
         const delta = this.activeEditor.clipboard.convert({
             html,
             text: '\n'
         });
         this.activeEditor.updateContents(delta, Quill.sources.USER);
+        
+        // Restore custom attributes to links after content is loaded
+        this.setLinkAttributes(linkAttributes);
+        
         this.activeEditor.history.clear();
+    },
+
+
+    getLinkAttributes: function (html) {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        const links = tempDiv.querySelectorAll('a[pimcore_id], a[pimcore_type]');
+        const linkAttributes = [];
+        
+        links.forEach(link => {
+            const attrs = {};
+            if (link.hasAttribute('pimcore_id')) {
+                attrs.pimcore_id = link.getAttribute('pimcore_id');
+            }
+            if (link.hasAttribute('pimcore_type')) {
+                attrs.pimcore_type = link.getAttribute('pimcore_type');
+            }
+            if (link.hasAttribute('href')) {
+                attrs.href = link.getAttribute('href');
+            }
+            linkAttributes.push(attrs);
+        });
+        
+        return linkAttributes;
+    },
+
+    setLinkAttributes: function (linkAttributes) {
+        if (linkAttributes.length === 0) {
+            return;
+        }
+        
+        const editorLinks = this.activeEditor.root.querySelectorAll('a');
+        let linkIndex = 0;
+        
+        editorLinks.forEach(editorLink => {
+            if (linkIndex < linkAttributes.length) {
+                const attrs = linkAttributes[linkIndex];
+                // Match by href to ensure we're updating the right link
+                if (attrs.href && editorLink.getAttribute('href') === attrs.href) {
+                    if (attrs.pimcore_id) {
+                        editorLink.setAttribute('pimcore_id', attrs.pimcore_id);
+                    }
+                    if (attrs.pimcore_type) {
+                        editorLink.setAttribute('pimcore_type', attrs.pimcore_type);
+                    }
+                    
+                    // Remove custom attributes from child elements (like strong, em, etc.)
+                    const childElements = editorLink.querySelectorAll('[pimcore_id], [pimcore_type]');
+                    childElements.forEach(child => {
+                        child.removeAttribute('pimcore_id');
+                        child.removeAttribute('pimcore_type');
+                    });
+                    
+                    // Remove custom attributes from parent elements
+                    let parentNode = editorLink.parentElement;
+                    while (parentNode && parentNode !== this.activeEditor.root) {
+                        if (parentNode.hasAttribute('pimcore_id')) {
+                            parentNode.removeAttribute('pimcore_id');
+                        }
+                        if (parentNode.hasAttribute('pimcore_type')) {
+                            parentNode.removeAttribute('pimcore_type');
+                        }
+                        parentNode = parentNode.parentElement;
+                    }
+                    
+                    linkIndex++;
+                }
+            }
+        });
     }
 })
 

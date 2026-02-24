@@ -16,8 +16,8 @@
   "prefer-stable": true,
   "minimum-stability": "dev",
   "require": {
-    "php": "~8.3.0 || ~8.4.0",
-    "pimcore/pimcore": "^12.0"
+    "php": "~8.4.0 || ~8.5.0",
+    "pimcore/pimcore": "dev-support-php-8.5"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
@@ -35,6 +35,9 @@
     "pimcore/studio-ui-bundle": "<0.12.9"
   },
   "extra": {
+    "branch-alias": {
+      "dev-2026.x": "2.2.x-dev"
+    },
     "pimcore": {
       "bundles": [
         "Pimcore\\Bundle\\QuillBundle\\PimcoreQuillBundle"

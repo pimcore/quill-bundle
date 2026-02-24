@@ -21,15 +21,11 @@ on:
       - "assets/studio/**"
   workflow_dispatch:
 
-permissions:
-  contents: write
-
 jobs:
-  studio-frontend:
+  studio-frontend-build:
     uses: pimcore/workflows-collection-public/.github/workflows/reusable-studio-frontend-build.yaml@reusable-workflows
     with:
-      working-directory: "assets/studio"
-      build-output-path: "assets/studio/public"
-      lint: true
-      typecheck: true
-      commit-build-output: true
+      node-version: "22"
+      build-output-path: "./public/"
+    permissions:
+      contents: write

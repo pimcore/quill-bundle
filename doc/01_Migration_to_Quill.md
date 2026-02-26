@@ -4,7 +4,7 @@ Every WYSIWYG-Editor (TinyMCE, CKEditor, ...) has its own peculiarities, that me
 
 ## Replace TinyMCE with Quill
 
-First install Quill: [Installation](./00_Installation.md)
+First install Quill: [Installation](./00_Installation/README.md)
 
 ### Bundles
 

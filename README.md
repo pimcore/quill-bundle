@@ -3,7 +3,7 @@ This bundle provides the [Quill 2.x](https://quilljs.com/) WYSIWYG editor integr
 This includes the WYSIWYG for Documents, Data Objects and Shared Translations. 
 
 ## Installation
-See [Installation](./doc/00_Installation.md)
+See [Installation](./doc/00_Installation/README.md)
 
 ## Migration to Quill
 See [Migration](./doc/01_Migration_to_Quill.md)

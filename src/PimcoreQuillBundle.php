@@ -37,30 +37,21 @@ class PimcoreQuillBundle extends AbstractPimcoreBundle implements PimcoreBundleA
 
     public function getJsPaths(): array
     {
-        return [
-            '/bundles/pimcorequill/quill/quill.js',
-            '/bundles/pimcorequill/quill-table-better/quill-table-better.js',
-            '/bundles/pimcorequill/js/editor.js',
-        ];
+        return [];
     }
 
     public function getCssPaths(): array
     {
-        return [
-            '/bundles/pimcorequill/css/editor.css',
-            '/bundles/pimcorequill/quill/quill.snow.css',
-            '/bundles/pimcorequill/quill/quill.bubble.css',
-            '/bundles/pimcorequill/quill-table-better/quill-table-better.css',
-        ];
+        return [];
     }
 
     public function getEditmodeCssPaths(): array
     {
-        return $this->getCssPaths();
+        return [];
     }
 
     public function getEditmodeJsPaths(): array
     {
-        return $this->getJsPaths();
+        return [];
     }
 }

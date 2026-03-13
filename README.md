@@ -14,14 +14,14 @@ Available configuration options can be found here: [config options](https://quil
 
 ### Themes
 
-Available themes and how to configure it can be found here: [themes](https://quilljs.com/docs/customization/themes)
+Available themes and how to configure them can be found here: [themes](https://quilljs.com/docs/customization/themes)
 
 ## Examples
 
 ### Basic usage
 
 `wysiwyg` helper doesn't require any additional configuration options.
-The following code customize the toolbar.
+The following code customizes the toolbar.
 
 ```twig
 <section id="marked-content">

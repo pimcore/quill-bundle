@@ -1,7 +1,7 @@
 # Upgrade Information
 
-Following steps are necessary during updating to newer versions.
+The following steps are necessary when updating to newer versions.
 
 ## Upgrade to 2026.1.0
-- Added support to `PHP` `8.5`.
-- Removed support to `PHP` `8.3` and Symfony `v6`.
+- Added support for `PHP` `8.5`.
+- Removed support for `PHP` `8.3` and Symfony `v6`.

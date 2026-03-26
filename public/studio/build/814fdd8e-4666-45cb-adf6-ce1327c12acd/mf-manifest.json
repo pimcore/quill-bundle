@@ -22,7 +22,7 @@
     "globalName": "pimcore_quill_bundle",
     "pluginVersion": "2.3.0",
     "prefetchInterface": false,
-    "publicPath": "/bundles/pimcorequill/studio/build/be1b45bf-991e-43db-917d-508e7263fada/"
+    "publicPath": "/bundles/pimcorequill/studio/build/814fdd8e-4666-45cb-adf6-ce1327c12acd/"
   },
   "shared": [
     {

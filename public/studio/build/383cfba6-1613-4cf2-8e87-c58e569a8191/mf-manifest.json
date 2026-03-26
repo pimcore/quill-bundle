@@ -20,30 +20,50 @@
       "api": ""
     },
     "globalName": "pimcore_quill_bundle",
-    "pluginVersion": "0.14.0",
+    "pluginVersion": "2.3.0",
     "prefetchInterface": false,
-    "publicPath": "/bundles/pimcorequill/studio/build/b7e8edfe-7426-4343-963c-7e1a9f400135/"
+    "publicPath": "/bundles/pimcorequill/studio/build/383cfba6-1613-4cf2-8e87-c58e569a8191/"
   },
   "shared": [
     {
-      "id": "pimcore_quill_bundle:react",
-      "name": "react",
-      "version": "*",
+      "id": "pimcore_quill_bundle:antd-style",
+      "name": "antd-style",
+      "version": "3.7.1",
       "singleton": true,
-      "requiredVersion": "^*",
+      "requiredVersion": "^3.7.1",
       "assets": {
         "js": {
           "async": [],
           "sync": [
-            "static/js/269.6ea4f059.js",
-            "static/js/remoteEntry.js"
+            "static/js/async/102.aadfc9f0.js"
           ]
         },
         "css": {
           "async": [],
           "sync": []
         }
-      }
+      },
+      "fallback": ""
+    },
+    {
+      "id": "pimcore_quill_bundle:quill-table-better",
+      "name": "quill-table-better",
+      "version": "1.2.3",
+      "singleton": true,
+      "requiredVersion": "^1.1.6",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/async/841.75471cbd.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "fallback": ""
     },
     {
       "id": "pimcore_quill_bundle:quill",
@@ -55,64 +75,27 @@
         "js": {
           "async": [],
           "sync": [
-            "static/js/async/770.17ad2bc5.js"
+            "static/js/async/25.30f3a9ad.js"
           ]
         },
         "css": {
           "async": [],
           "sync": []
         }
-      }
-    },
-    {
-      "id": "pimcore_quill_bundle:antd-style",
-      "name": "antd-style",
-      "version": "3.7.1",
-      "singleton": true,
-      "requiredVersion": "^3.7.1",
-      "assets": {
-        "js": {
-          "async": [],
-          "sync": [
-            "static/js/async/37.0478317e.js"
-          ]
-        },
-        "css": {
-          "async": [],
-          "sync": []
-        }
-      }
-    },
-    {
-      "id": "pimcore_quill_bundle:quill-table-better",
-      "name": "quill-table-better",
-      "version": "1.1.6",
-      "singleton": true,
-      "requiredVersion": "^1.1.6",
-      "assets": {
-        "js": {
-          "async": [],
-          "sync": [
-            "static/js/async/145.ab713703.js"
-          ]
-        },
-        "css": {
-          "async": [],
-          "sync": []
-        }
-      }
+      },
+      "fallback": ""
     },
     {
       "id": "pimcore_quill_bundle:react-dom",
       "name": "react-dom",
-      "version": "*",
+      "version": "18.3.1",
       "singleton": true,
-      "requiredVersion": "^*",
+      "requiredVersion": "^18.3.1",
       "assets": {
         "js": {
           "async": [],
           "sync": [
-            "static/js/269.6ea4f059.js",
+            "static/js/109.67b0ef42.js",
             "static/js/remoteEntry.js"
           ]
         },
@@ -120,7 +103,29 @@
           "async": [],
           "sync": []
         }
-      }
+      },
+      "fallback": ""
+    },
+    {
+      "id": "pimcore_quill_bundle:react",
+      "name": "react",
+      "version": "18.3.1",
+      "singleton": true,
+      "requiredVersion": "^18.3.1",
+      "assets": {
+        "js": {
+          "async": [],
+          "sync": [
+            "static/js/109.67b0ef42.js",
+            "static/js/remoteEntry.js"
+          ]
+        },
+        "css": {
+          "async": [],
+          "sync": []
+        }
+      },
+      "fallback": ""
     }
   ],
   "remotes": [
@@ -168,14 +173,14 @@
       "assets": {
         "js": {
           "sync": [
-            "static/js/async/872.a9470a7d.js",
-            "static/js/async/__federation_expose_default_export.26793afc.js"
+            "static/js/async/553.de65faa4.js",
+            "static/js/async/__federation_expose_default_export.c0ccc573.js"
           ],
           "async": []
         },
         "css": {
           "sync": [
-            "static/css/async/872.1e3b2cc8.css"
+            "static/css/async/553.51bcc2c4.css"
           ],
           "async": []
         }

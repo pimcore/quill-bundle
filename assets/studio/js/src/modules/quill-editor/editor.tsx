@@ -8,6 +8,7 @@
  *  @license    Pimcore Open Core License (POCL)
  */
 
+/* eslint-disable max-lines */
 import React, {
   forwardRef,
   useEffect,
@@ -350,10 +351,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
 
       let textIsSelected = false
 
-      let retval = lastSelection
-      if (retval === undefined) {
-        retval = new Range(0, 0)
-      }
+      const retval = lastSelection ?? new Range(0, 0)
 
       if (retval.length > 0) {
         textIsSelected = true

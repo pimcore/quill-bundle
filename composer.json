@@ -1,44 +1,44 @@
 {
-  "name": "pimcore/quill-bundle",
-  "license": "proprietary",
-  "type": "pimcore-bundle",
-  "config": {
-    "discard-changes": true,
-    "sort-packages": true,
-    "preferred-install": {
-      "pimcore/pimcore": "source",
-      "*": "dist"
+    "name": "pimcore/quill-bundle",
+    "license": "proprietary",
+    "type": "pimcore-bundle",
+    "config": {
+        "discard-changes": true,
+        "sort-packages": true,
+        "preferred-install": {
+            "pimcore/pimcore": "source",
+            "*": "dist"
+        },
+        "allow-plugins": {
+            "php-http/discovery": false
+        }
     },
-    "allow-plugins": {
-      "php-http/discovery": false
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "require": {
+        "php": "~8.3.0 || ~8.4.0",
+        "pimcore/pimcore": "^12.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "phpstan/phpstan": "^1.10.5",
+        "phpstan/phpstan-symfony": "^1.2.20",
+        "phpunit/phpunit": "^12.5.23 || ^13.1.7",
+        "nyholm/psr7": "^1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pimcore\\Bundle\\QuillBundle\\": "src/"
+        }
+    },
+    "conflict": {
+        "pimcore/studio-ui-bundle": "<0.12.9"
+    },
+    "extra": {
+        "pimcore": {
+            "bundles": [
+                "Pimcore\\Bundle\\QuillBundle\\PimcoreQuillBundle"
+            ]
+        }
     }
-  },
-  "prefer-stable": true,
-  "minimum-stability": "dev",
-  "require": {
-    "php": "~8.3.0 || ~8.4.0",
-    "pimcore/pimcore": "^12.0"
-  },
-  "require-dev": {
-    "roave/security-advisories": "dev-latest",
-    "phpstan/phpstan": "^1.10.5",
-    "phpstan/phpstan-symfony": "^1.2.20",
-    "phpunit/phpunit": "10.2.7",
-    "nyholm/psr7": "^1"
-  },
-  "autoload": {
-    "psr-4": {
-      "Pimcore\\Bundle\\QuillBundle\\": "src/"
-    }
-  },
-  "conflict": {
-    "pimcore/studio-ui-bundle": "<0.12.9"
-  },
-  "extra": {
-    "pimcore": {
-      "bundles": [
-        "Pimcore\\Bundle\\QuillBundle\\PimcoreQuillBundle"
-      ]
-    }
-  }
 }

@@ -4,9 +4,11 @@ on:
   push:
     paths:
       - "assets/studio/**"
+      - "public/studio/build/**"
   pull_request:
     paths:
       - "assets/studio/**"
+      - "public/studio/build/**"
   workflow_dispatch:
 
 concurrency:

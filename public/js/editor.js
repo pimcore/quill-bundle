@@ -260,7 +260,7 @@ pimcore.bundle.quill.editor = Class.create({
 
     imageHandler: function () {
         const urlRegex = /https?:\/\/[^\s]+/g;
-        const { tooltip } = this.activeEditor.theme;
+        const { tooltip } = this.quill.theme;
         const { textbox } = tooltip;
 
         const originalSave = tooltip.save.bind(tooltip);

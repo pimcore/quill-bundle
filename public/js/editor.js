@@ -26,6 +26,21 @@ pimcore.bundle.quill.editor = Class.create({
         document.addEventListener(parent.pimcore.events.beforeDestroyWysiwyg, this.beforeDestroyWysiwyg.bind(this));
     },
 
+    addNofollowToExternalLinks: function (node) {
+        const parsedUrl = new URL(node);
+        const internalDomains = ["jochen-schweizer.", "mydays.", "jsmd-group.com"];
+        const isExternal = !internalDomains.some(domain => parsedUrl.hostname.includes(domain));
+
+        if (parsedUrl.hostname !== '127.0.0.1' && isExternal) {
+            let relAttr = node.getAttribute('rel') || '';
+            if (!relAttr.includes('nofollow')) {
+                relAttr = `${relAttr} nofollow`.trim();
+            }
+            node.setAttribute('rel', relAttr);
+        }
+        return node;
+    },
+
     initializeWysiwyg: function (e) {
         if (e.detail.context === 'object') {
             if (!isNaN(e.detail.config.maxCharacters) && e.detail.config.maxCharacters > 0) {
@@ -37,16 +52,29 @@ pimcore.bundle.quill.editor = Class.create({
 
         this.config = e.detail.config;
 
-        if(this.config.toolbarConfig) {
+        if (this.config.toolbarConfig) {
             const elementCustomConfig = JSON.parse(this.config.toolbarConfig);
             this.config = mergeObject(this.config, elementCustomConfig);
         }
 
         const Parchment = Quill.import('parchment');
 
+        const Link = Quill.import('formats/link');
+
+        class CustomLink extends Link {
+            static create(value) {
+                let node = super.create(value);
+                return pimcore.bundle.quill.editor.prototype.addNofollowToExternalLinks(node);
+            }
+        }
+
+        Quill.register(CustomLink, true);
+
         Quill.register({
             'modules/table-better': QuillTableBetter,
         }, true);
+
+        Quill.register("modules/resize", window.QuillResizeImage);
 
         const pimcoreIdAttributor = new Parchment.Attributor('pimcore_id', 'pimcore_id', {
             scope: Parchment.Scope.INLINE
@@ -126,7 +154,7 @@ pimcore.bundle.quill.editor = Class.create({
         this.activeEditor.on('text-change', () => {
             const tableModule = this.activeEditor.getModule('table-better');
             tableModule?.deleteTableTemporary();
-            const data = this.activeEditor.getSemanticHTML().replace(/<p>\s*<\/p>/g, '');
+            const data = this.activeEditor.getSemanticHTML().replace(/(?:<p>\s*<\/p>)+$/g, '');
             document.dispatchEvent(new CustomEvent(pimcore.events.changeWysiwyg, {
                 detail: {
                     e: {target:{id: textareaId}},
@@ -256,6 +284,37 @@ pimcore.bundle.quill.editor = Class.create({
 
     },
 
+    imageHandler: function () {
+        const urlRegex = /https?:\/\/[^\s]+/g;
+        const { tooltip } = this.activeEditor.theme;
+        const { textbox } = tooltip;
+
+        const originalSave = tooltip.save.bind(tooltip);
+        const originalHide = tooltip.hide.bind(tooltip);
+
+        tooltip.boundsContainer = tooltip.quill.container;
+
+        tooltip.save = () => {
+            const range = this.activeEditor.getSelection(true);
+            const url = textbox.value.trim();
+            const isValidUrl = urlRegex.test(url);
+
+            if (isValidUrl) {
+                this.activeEditor.insertEmbed(range.index, 'image', url, Quill.sources.USER);
+            } else {
+                console.error('Invalid URL for image embed');
+            }
+        };
+
+        tooltip.hide = () => {
+            Object.assign(tooltip, { save: originalSave, hide: originalHide });
+            tooltip.hide();
+        };
+
+        tooltip.edit('image');
+        textbox.placeholder = 'Embed URL';
+    },
+
     setDefaultConfig: function (config) {
         const modules = config.modules
         if (!modules.hasOwnProperty('table')) {
@@ -270,33 +329,53 @@ pimcore.bundle.quill.editor = Class.create({
             };
         }
 
-        if(!modules.hasOwnProperty('keyboard')) {
+        if (!modules.hasOwnProperty('resize')) {
+            modules['resize'] = {
+                locale: {},
+            };
+        }
+
+        if (!modules.hasOwnProperty('keyboard')) {
             modules.keyboard = {
                 bindings: QuillTableBetter.keyboardBindings
             };
         }
 
-        if(!modules.hasOwnProperty('toolbar')) {
+        if (!modules.hasOwnProperty('toolbar')) {
             modules.toolbar = {
                 container: [
-                    ['undo', 'redo'],
+                    ['redo', 'undo'],
                     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                    ['bold', 'italic'],
-                    [{ align: [] }],
-                    [{ list: 'ordered' }, { list: 'bullet' }],
+                    ['bold', 'italic', 'underline', 'strike'],
+                    ['blockquote', 'code-block'],
+                    ['link', 'image', 'video', 'formula'],
+                    [{ list: 'ordered'}, { list: 'bullet' }, { list: 'check' }],
+                    [{ script: 'sub'}, { script: 'super' }],
+                    [{ direction: 'rtl' }],
+                    [{ color: [] }, { background: [] }],
+                    [{ font: [] }],
+                    [{ 'align': [] }],
                     [{ indent: '-1' }, { indent: '+1' }],
-                    ['blockquote'],
-                    ['link', 'table-better'],
-                    [ 'clean', 'html-edit'],
-                ]
+                    ['table-better'],
+                    ['clean', 'html-edit'],
+                ],
+                handlers: {
+                    image: this.imageHandler
+                }
             };
         }
 
-        if(!modules.hasOwnProperty('history')) {
+        if (!modules.hasOwnProperty('history')) {
             modules.history = {
                 delay: 700,
                 maxStack: 200,
                 userOnly: true
+            };
+        }
+
+        if (!modules.hasOwnProperty('clipboard')) {
+            modules.clipboard = {
+                matchVisual: false
             };
         }
 

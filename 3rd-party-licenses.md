@@ -15,3 +15,7 @@ https://github.com/slab/quill/blob/main/LICENSE
 ### Quill-Table-Better
 License: MIT
 https://github.com/attoae/quill-table-better/blob/main/LICENSE
+
+### Quill-Resize-Image
+License: MIT
+https://github.com/hunghg255/quill-resize-image/blob/master/package.json

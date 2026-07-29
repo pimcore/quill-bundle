@@ -4,6 +4,11 @@ title: Quill WYSIWYG Editor
 
 # Quill WYSIWYG Editor
 
+> **Deprecated:** This bundle is deprecated and will no longer be part of the Pimcore
+> Platform LTS starting with the 2027 release line. It remains fully supported in the
+> 2026.x LTS. See the [2026.3 release notes](https://github.com/pimcore/platform-version/blob/2026.x/doc/02_Pimcore_Platform/05_Updating_Pimcore/02_Release_Notes/01_2026.3.md)
+> for details.
+
 Integrates the [Quill 2.x](https://quilljs.com/) WYSIWYG editor into Pimcore.
 Quill provides rich-text editing for documents, data objects, and shared translations.
 

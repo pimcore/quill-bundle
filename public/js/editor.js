@@ -226,6 +226,12 @@ pimcore.bundle.quill.editor = Class.create({
 
                 return true;
             } else {
+                if (!textIsSelected) {
+                    const filename = data.text || (data.path || '').split('/').pop() || 'Datei';
+                    this.activeEditor.insertText(retval.index, filename, 'user');
+                    this.activeEditor.setSelection(retval.index, filename.length);
+                    retval = this.activeEditor.getSelection();
+                }
                 this.activeEditor.format('link', uri);
                 const [leaf, offset] = this.activeEditor.getLeaf(retval.index + 1);
                 if (leaf && leaf.parent.domNode.nodeName === 'A') {

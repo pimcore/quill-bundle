@@ -2,6 +2,7 @@
   "name": "pimcore/quill-bundle",
   "license": "proprietary",
   "type": "pimcore-bundle",
+  "abandoned": true,
   "config": {
     "discard-changes": true,
     "sort-packages": true,

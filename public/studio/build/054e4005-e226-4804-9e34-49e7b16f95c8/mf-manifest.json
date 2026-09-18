@@ -22,7 +22,7 @@
     "globalName": "pimcore_quill_bundle",
     "pluginVersion": "2.3.0",
     "prefetchInterface": false,
-    "publicPath": "/bundles/pimcorequill/studio/build/437d07e1-189b-484f-9bc6-44d017220511/"
+    "publicPath": "/bundles/pimcorequill/studio/build/054e4005-e226-4804-9e34-49e7b16f95c8/"
   },
   "shared": [
     {
@@ -173,7 +173,7 @@
       "assets": {
         "js": {
           "sync": [
-            "static/js/async/553.de65faa4.js",
+            "static/js/async/553.110af8c0.js",
             "static/js/async/__federation_expose_default_export.c0ccc573.js"
           ],
           "async": []

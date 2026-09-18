@@ -4,6 +4,26 @@ title: Upgrade Information
 
 # Upgrade Information
 
+## Upgrade to 2026.2.1
+
+### Frontend Build Ships as a Packaged Archive
+
+The compiled Studio frontend is no longer committed as an expanded
+`public/studio/build/` directory. It now ships as a single archive
+(`build-dist/build-<id>.zip`) that is extracted into `public/studio/build/`
+automatically during cache warmup.
+
+`pimcore/studio-ui-bundle` `^2026.2.1` is now required, as it provides the
+archive extraction.
+
+> **Note:** Read-only filesystem deployments must run `bin/console cache:warmup`
+> (or `cache:clear`) during the build/deploy phase while the bundle directory
+> (usually under `vendor/`) is still writable. Standard Pimcore deployments
+> already do this. When `assets:install` runs in copy mode, run `cache:warmup`
+> before it, otherwise no frontend assets are copied. If the filesystem becomes
+> read-only before the first warmup, the bundle fails with
+> `BuildArchiveNotWritableException` because there is no build to serve.
+
 ## Upgrade to 2026.1.0
 
 ### PHP / Symfony Requirements

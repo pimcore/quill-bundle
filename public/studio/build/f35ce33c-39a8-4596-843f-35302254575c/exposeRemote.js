@@ -7,7 +7,7 @@
         window.alternativePluginExportPaths = {}
       }
 
-      window.pluginRemotes.pimcore_quill_bundle = "/bundles/pimcorequill/studio/build/887695e7-73dd-4678-8599-d7b499fb96e8/static/js/remoteEntry.js"
+      window.pluginRemotes.pimcore_quill_bundle = "/bundles/pimcorequill/studio/build/f35ce33c-39a8-4596-843f-35302254575c/static/js/remoteEntry.js"
 
       
     

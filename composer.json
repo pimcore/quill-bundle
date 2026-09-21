@@ -2,7 +2,7 @@
   "name": "pimcore/quill-bundle",
   "license": "proprietary",
   "type": "pimcore-bundle",
-  "abandoned": true,
+  "abandoned": "pimcore/pimcore-wysiwyg-editor",
   "config": {
     "discard-changes": true,
     "sort-packages": true,

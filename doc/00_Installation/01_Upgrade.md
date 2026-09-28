@@ -4,6 +4,22 @@ title: Upgrade Information
 
 # Upgrade Information
 
+## Upgrade to 2026.3.0
+
+### Bundle Deprecated for Platform LTS 2027
+
+`pimcore/quill-bundle` is now marked `abandoned` in `composer.json` and will no
+longer be part of the Pimcore Platform LTS starting with the 2027 release line.
+
+- The bundle remains fully supported throughout the 2026.x LTS; there are no
+  functional changes in this release.
+- No action is required for existing 2026.x installations.
+- New projects should use the replacement
+  [Pimcore WYSIWYG Editor](https://github.com/pimcore/pimcore-wysiwyg-editor)
+  (`pimcore/pimcore-wysiwyg-editor`) instead. Projects on `pimcore/quill-bundle`
+  should plan a migration to `pimcore/pimcore-wysiwyg-editor` before upgrading
+  to the 2027 release line.
+
 ## Upgrade to 2026.2.1
 
 ### Frontend Build Ships as a Packaged Archive

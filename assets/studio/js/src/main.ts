@@ -8,3 +8,5 @@
  *  @license    Pimcore Open Core License (POCL)
  */
 // eslint-disable-next-line header/header
+
+// validation: forces a changed build archive (pimcore/quill-bundle#112)

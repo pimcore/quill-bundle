@@ -7,6 +7,7 @@
  *  @copyright  Copyright (c) Pimcore GmbH (https://www.pimcore.com)
  *  @license    Pimcore Open Core License (POCL)
  */
-// eslint-disable-next-line header/header
+
+ 
 
 // validation: forces a changed build archive (pimcore/quill-bundle#112)

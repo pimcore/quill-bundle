@@ -126,7 +126,7 @@ pimcore.bundle.quill.editor = Class.create({
         this.activeEditor.on('text-change', () => {
             const tableModule = this.activeEditor.getModule('table-better');
             tableModule?.deleteTableTemporary();
-            const data = this.activeEditor.getSemanticHTML().replace(/<p>\s*<\/p>/g, '');
+            const data = this.getEditorHtml(this.activeEditor);
             document.dispatchEvent(new CustomEvent(pimcore.events.changeWysiwyg, {
                 detail: {
                     e: {target:{id: textareaId}},
@@ -422,7 +422,19 @@ pimcore.bundle.quill.editor = Class.create({
         const textarea = this.modalBackground.getElementsByTagName('textarea')[0];
         const tableModule = this.activeEditor.getModule('table-better');
         tableModule?.deleteTableTemporary();
-        textarea.value = this.activeEditor.getSemanticHTML();
+        textarea.value = this.getEditorHtml(this.activeEditor);
+    },
+
+    getEditorHtml: function (editor) {
+        const html = editor.getSemanticHTML();
+
+        // an editor without content only consists of empty paragraphs
+        if (/^(?:<p>\s*<\/p>)*$/.test(html)) {
+            return '';
+        }
+
+        // getSemanticHTML() renders an empty line (<p><br></p>) as <p></p>, which is not displayed at all
+        return html.replace(/<p>\s*<\/p>/g, '<p><br></p>');
     },
 
     setEditorContent: function (html) {

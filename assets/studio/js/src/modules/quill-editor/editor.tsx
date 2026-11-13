@@ -179,7 +179,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
 
       const tableModule = editor.getModule('table-better') as any
       tableModule?.deleteTableTemporary()
-      if (defaultValue !== '<p></p>' && defaultValue !== '' && defaultValue !== getEditorHtml(editor)) {
+      if (defaultValue !== '<p></p>' && defaultValue !== getEditorHtml(editor)) {
         setEditorContent(editor, defaultValue)
       }
     }, [defaultValue])

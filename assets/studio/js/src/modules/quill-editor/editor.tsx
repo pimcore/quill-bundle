@@ -24,6 +24,7 @@ import 'quill/dist/quill.snow.css'
 import QuillTableBetter from 'quill-table-better'
 import 'quill-table-better/dist/quill-table-better.css'
 import { HtmlModal } from './html-modal'
+import { normalizeSemanticHtml } from './get-editor-html'
 import {
   type DragAndDropInfo,
   createImageThumbnailUrl
@@ -111,7 +112,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       quill.on(Quill.events.TEXT_CHANGE, (...args) => {
         const tableModule = quill.getModule('table-better') as any
         tableModule?.deleteTableTemporary()
-        onTextChangeRef.current?.(quill.getSemanticHTML())
+        onTextChangeRef.current?.(getEditorHtml(quill))
         checkCharCount(quill)
       })
 
@@ -178,7 +179,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
 
       const tableModule = editor.getModule('table-better') as any
       tableModule?.deleteTableTemporary()
-      if (defaultValue !== '<p></p>' && defaultValue !== editor.getSemanticHTML()) {
+      if (defaultValue !== '<p></p>' && defaultValue !== '' && defaultValue !== getEditorHtml(editor)) {
         setEditorContent(editor, defaultValue)
       }
     }, [defaultValue])
@@ -254,7 +255,7 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
         () => {
           const tableModule = quill.getModule('table-better') as any
           tableModule?.deleteTableTemporary()
-          setHtml(quill.getSemanticHTML())
+          setHtml(getEditorHtml(quill))
           setOpenHtmlModal(true)
         }
       )
@@ -269,6 +270,10 @@ const Editor = forwardRef<WysiwygEditorRef, EditorProps>(
       quill.updateContents(delta, Quill.sources.USER)
       quill.history.clear()
       checkCharCount(quill)
+    }
+
+    function getEditorHtml (quill: Quill): string {
+      return normalizeSemanticHtml(quill.getSemanticHTML())
     }
 
     function createToolbarBtn (className, onClick, innerHTML = ''): void {
